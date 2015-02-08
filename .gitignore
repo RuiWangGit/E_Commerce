@@ -1,0 +1,5 @@
+.DS_Store
+database.php
+.secret
+.project
+*.swp
