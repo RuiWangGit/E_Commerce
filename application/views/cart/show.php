@@ -96,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<td><?=$product['price']?></td>
 							<td>
 								<p><?=$product['quantity']?>
-									<a class="btn pull-right" href="#delete-confirmation" role="button" data-toggle="modal">remove</a>
+									<a class="pull-right" href="#delete-confirmation" role="button" data-toggle="modal">remove</a>
 									<a class = "pull-right" href="/carts/update/<?=$product['id']?>">update</a> 
 								</p>
 							</td>
@@ -106,14 +106,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</table>
 
 				<p class="pull-right">
-					<a class = "btn btn-large btn-info " href="#">Edit your cart</a>
+					<a class = "btn btn-large btn-info " href="/carts">Edit your cart</a>
 					<a class="btn btn-large btn-info" href="" >Continue shopping</a>
 				</p>	
 				
-
-				<!-- <a href="/carts/update/<?=$product['id']?>">Edit your cart</a> 
-				<a class="btn" href="#delete-confirmation" role="button" data-toggle="modal">Continue shopping</a>
-			-->				
+	
 
 			</div>
 
@@ -126,26 +123,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 
-	
-		<div class="modal fade" id="delete-confirmation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-						<h4 class="modal-title">Do you really want to delete the user?</h4>
-					</div>
-					<div class="modal-body">
-						<form action="/admins/remove" method="post">
-							<input type="hidden" name="id" value=""
-							<button type="submit" class="btn btn-default" href="/admins/remove">Yes</button>
-							<button type="submit" class="btn btn-primary" data-dismiss="modal">No</button>
-						</form>
 
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-	
+		
 
 
 

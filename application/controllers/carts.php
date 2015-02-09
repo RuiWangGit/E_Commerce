@@ -13,6 +13,8 @@ class  Carts extends CI_Controller {
         // $product = $this->Product->get_one_product($product_id);
          
          // $this->load->view("/cart/show" ) ;
+
+        $this->load->view("cart/checkout", array('selected_products'=>$this->session->userdata('selected_products')));
                 
     }
 	
@@ -20,7 +22,7 @@ class  Carts extends CI_Controller {
 
         //$product_id = $this->input->post('id');
        // $product_qty = $this->input->post('quantity');
-        $this->session->set_userdata('selected_products',"");
+        //$this->session->set_userdata('selected_products',"");
         $product_id = 1;
         $product_qty = 3;
 
