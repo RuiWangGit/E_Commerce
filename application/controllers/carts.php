@@ -12,5 +12,13 @@ class  extends CI_Controller {
          $this->load->view("index" ) ;
                 
     }
+	
+    public function add(){
+
+
+    }
+
+
+
 }
 
