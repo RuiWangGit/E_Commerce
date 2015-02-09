@@ -6,10 +6,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'root',
-	'database' => 'e_commerce',
+	'hostname' => '104.131.144.93',
+	'username' => 'dojoninja',
+	'password' => 'dojoninja1234',
+	'database' => 'e_mall',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
