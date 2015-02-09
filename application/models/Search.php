@@ -37,7 +37,7 @@ class Search extends CI_Model {
 	public function fetch_products_by_category($category_id)
 	{
 		$query = "SELECT * FROM products
-				  WHERE categories_id = ? ";
+				  WHERE category_id = ? ";
 		$value = array($category_id);
 		return $this->db->query($query, $value)->result_array();
 	}
@@ -47,6 +47,14 @@ class Search extends CI_Model {
 		$query = "SELECT * FROM products
 				  WHERE id = ? ";
 		$value = array($product_id);
+		return $this->db->query($query, $value)->result_array();
+	}
+
+	public function fetch_products_by_keyword($keyword)
+	{
+		$query = "SELECT * FROM products
+				  WHERE name like ? OR description like ?";
+		$value = array("%".$keyword."%", "%".$keyword."%");
 		return $this->db->query($query, $value)->result_array();
 	}
 }

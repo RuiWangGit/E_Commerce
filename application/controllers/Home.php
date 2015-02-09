@@ -37,6 +37,14 @@ class Home extends CI_Controller {
 
 		$this->load->view("product_detail", $view_data);
 	}
+
+	public function search_keyword()
+	{
+		$keyword = $this->input->post("keyword");
+		$view_data["products"] = $this->Search->fetch_products_by_keyword($keyword);
+
+		$this->load->view("product_list", $view_data);
+	}
 }
 
 ?>

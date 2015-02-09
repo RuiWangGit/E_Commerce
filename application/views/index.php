@@ -15,6 +15,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<script type="text/javascript">
 		$(document).ready(function(){
+
+			$("form#search").on("submit", function(){
+				$.ajax({
+					url: $(this).attr("action"),
+					type: "POST",
+					data: $(this).serialize()
+				}).done(function(data){
+					$("div.item_result").html(data);
+				});
+				return false;
+			})
+
 			$(document).on("click", "a#category", function(){
 				$.ajax({
 					url: $(this).attr("href")
@@ -28,6 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				$.ajax({
 					url: $(this).attr("href")
 				}).done(function(data){
+					console.log(data);
 					$("div.item_result").html(data);
 				});
 				return false;
@@ -59,8 +72,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</header>
 	<div class="container">
 		<div class="col-lg-2">
-			<input type="text" name="search">
-			<input type="submit" value="submit">
+			<form id="search" method="post" action="index.php/home/search_keyword">
+				<input type="text" name="keyword">
+				<button type="submit"><i class="fa fa-search"></i></button>
+			</form>
 		
 			<h4>Categories</h4>
 			<ul>
