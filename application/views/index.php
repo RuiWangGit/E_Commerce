@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Hello World</title>
+	<title>Boot-camp</title>
 
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -15,17 +15,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$("a#category").on("click", function(){
+			$(document).on("click", "a#category", function(){
 				$.ajax({
 					url: $(this).attr("href")
-					// type: "POST",
-					// data: {}
 				}).done(function(data){
 					$("div.item_result").html(data);
-					// console.log("done");
-				})
+				});
 				return false;
-			})
+			});
+
+			$(document).on("click", "a#product", function(){
+				$.ajax({
+					url: $(this).attr("href")
+				}).done(function(data){
+					$("div.item_result").html(data);
+				});
+				return false;
+			});
 		})
 
 	</script>
@@ -61,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php
 			foreach($categories as $category) {
 ?>
-				<li><a id="category" href="/home/category/<?= $category['id'] ?>"><?= $category["name"] ?></a></li>
+				<li><a id="category" href="index.php/home/category/<?= $category['id'] ?>"><?= $category["name"] ?></a></li>
 
 <?php
 			}
@@ -77,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</select>
 
 			<div class="item_result">
-				<?php include("partial.php") ?>
+				<?php include("product_list.php") ?>
 			</div>
 
 		</div>

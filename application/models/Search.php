@@ -41,6 +41,14 @@ class Search extends CI_Model {
 		$value = array($category_id);
 		return $this->db->query($query, $value)->result_array();
 	}
+
+	public function fetch_product_by_id($product_id)
+	{
+		$query = "SELECT * FROM products
+				  WHERE id = ? ";
+		$value = array($product_id);
+		return $this->db->query($query, $value)->result_array();
+	}
 }
 
 ?>

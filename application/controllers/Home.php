@@ -26,8 +26,16 @@ class Home extends CI_Controller {
 		$category_id = $this->uri->segment(3);
 		$view_data["products"] = $this->Search->fetch_products_by_category($category_id);
 
-		$this->load->view("partial", $view_data);
+		$this->load->view("product_list", $view_data);
 
+	}
+
+	public function product()
+	{
+		$product_id = $this->uri->segment(3);
+		$view_data["product"] = $this->Search->fetch_product_by_id($product_id);
+
+		$this->load->view("product_detail", $view_data);
 	}
 }
 
