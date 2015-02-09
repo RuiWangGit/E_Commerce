@@ -12,7 +12,13 @@ class Home extends CI_Controller {
 		$view_data = [];
 	}
 
-	public function index()
+	public function index (){
+		header("Location:/carts/add");
+	}
+
+
+
+	public function index2()
 	{
 		// var_dump($this->Search->record_count());
 		$view_data["categories"] = $this->Search->fetch_categories();

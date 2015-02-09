@@ -10,37 +10,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<script src="/assets/js/jquery-2.1.3.min.js"></script>
+	<style type="text/css">
+		.pull-right{
+			margin-left: 10px;
+		}
+	</style>
 
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$(document).on("click", "a#category", function(){
-				$.ajax({
-					url: $(this).attr("href")
-				}).done(function(data){
-					$("div.item_result").html(data);
-				});
-				return false;
+	$(document).ready(function(){
+		$(document).on("click", "a#category", function(){
+			$.ajax({
+				url: $(this).attr("href")
+			}).done(function(data){
+				$("div.item_result").html(data);
 			});
+			return false;
+		});
 
-			$(document).on("click", "a#product", function(){
-				$.ajax({
-					url: $(this).attr("href")
-				}).done(function(data){
-					$("div.item_result").html(data);
-				});
-				return false;
+		$(document).on("click", "a#product", function(){
+			$.ajax({
+				url: $(this).attr("href")
+			}).done(function(data){
+				$("div.item_result").html(data);
 			});
-		})
+			return false;
+		});
+	})
 
 	</script>
 
 	<style type="text/css">
-		.item_result div {
-			display: inline-block;
-			width: 200px;
-		}
+	.item_result div {
+		display: inline-block;
+		width: 200px;
+	}
 	</style>
 </head>
 <body>
@@ -57,37 +64,92 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</header>
+
+
 	<div class="container">
 		<div class="col-lg-2">
 			<input type="text" name="search">
 			<input type="submit" value="submit">
-		
-			<h4>Categories</h4>
-			<ul>
-<?php
-			foreach($categories as $category) {
-?>
-				<li><a id="category" href="index.php/home/category/<?= $category['id'] ?>"><?= $category["name"] ?></a></li>
 
-<?php
-			}
-?>
-			</ul>
+			
 		</div>
-		<div class="col-lg-10"> 
-			<h2>Tshirts</h2>
-			Sorted by
-				<select name="sorted_by">
-					<option>Price</option>
-					<option>Most Popualr</option>
-				</select>
 
-			<div class="item_result">
-				<?php include("product_list.php") ?>
+
+		<div class="col-lg-10"> 
+
+			<h3>You have added the following product into your cart. </h3>
+
+			<div class="prod">
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Item</th>
+							<th>Price</th>
+							<th>Quantity</th>
+							<th>Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><?=$product['name']?></td>
+							<td><?=$product['price']?></td>
+							<td>
+								<p><?=$product['quantity']?>
+									<a class="btn pull-right" href="#delete-confirmation" role="button" data-toggle="modal">remove</a>
+									<a class = "pull-right" href="/carts/update/<?=$product['id']?>">update</a> 
+								</p>
+							</td>
+							<td><?= $product['price']*$product['quantity'] ?></td>		
+						</tr>
+					</tbody>
+				</table>
+
+				<p class="pull-right">
+					<a class = "btn btn-large btn-info " href="#">Edit your cart</a>
+					<a class="btn btn-large btn-info" href="" >Continue shopping</a>
+				</p>	
+				
+
+				<!-- <a href="/carts/update/<?=$product['id']?>">Edit your cart</a> 
+				<a class="btn" href="#delete-confirmation" role="button" data-toggle="modal">Continue shopping</a>
+			-->				
+
 			</div>
 
 		</div>
+
+
+
+
+
 	</div>
+
+
+	
+		<div class="modal fade" id="delete-confirmation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+						<h4 class="modal-title">Do you really want to delete the user?</h4>
+					</div>
+					<div class="modal-body">
+						<form action="/admins/remove" method="post">
+							<input type="hidden" name="id" value=""
+							<button type="submit" class="btn btn-default" href="/admins/remove">Yes</button>
+							<button type="submit" class="btn btn-primary" data-dismiss="modal">No</button>
+						</form>
+
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	
+
+
+
+
 
 </body>
 </html>
