@@ -13,6 +13,7 @@ class  Carts extends CI_Controller {
         // $product = $this->Product->get_one_product($product_id);
          
          // $this->load->view("/cart/show" ) ;
+        // $this->load->library("lib/Stripe");
 
         $this->load->view("cart/checkout", array('selected_products'=>$this->session->userdata('selected_products')));
                 

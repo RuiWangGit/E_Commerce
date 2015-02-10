@@ -19,9 +19,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			margin-left: 10px;
 		}
 	</style>
-
+	
 	<script type="text/javascript">
 	$(document).ready(function(){
+
+
 		$(document).on("click", "a#category", function(){
 			$.ajax({
 				url: $(this).attr("href")
@@ -39,9 +41,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			});
 			return false;
 		});
+
+		//------adding stripe-----
+		
+
+
+
 	})
 
 	</script>
+
+
+
+
+
+
 
 	<style type="text/css">
 	.item_result div {
@@ -115,32 +129,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			
 
-				<form id="mainForm" action="" method="post">
+				<form id="mainForm" action="/payments" method="post">
 					<div class="col-sm-4" style="margin-top: 60px"> 
 						
 						<h4 style="margin: 20px 0">Shipping Address</h4>
 						
 						<div class="form-group">
-							<label for="last_name">Address:</label>
-							<input type="last_name" class="form-control" name="last_name" value="choi" placeholder="Enter last name">
+							<label for="address">Address:</label>
+							<input type="address" class="form-control" name="shipping_address" value="choi" placeholder="Enter address">
 						</div>
 						<div class="form-group">
-							<label for="last_name">Address 2:</label>
-							<input type="last_name" class="form-control" name="last_name" value="choi" placeholder="Enter last name">
+							<label for="address2">Address 2:</label>
+							<input type="address" class="form-control" name="shipping_address2" value="choi" placeholder="Enter address2">
 						</div>
 						<div class="form-group">
-							<label for="last_name">City:</label>
-							<input type="last_name" class="form-control" name="last_name" value="choi" placeholder="Enter last name">
+							<label for="city">City:</label>
+							<input type="city" class="form-control" name="shipping_city" value="choi" placeholder="Enter city">
 						</div>
 						<div class="form-group">
-							<label for="last_name">State:</label>
-							<input type="last_name" class="form-control" name="last_name" value="choi" placeholder="Enter last name">
+							<label for="state">State:</label>
+							<input type="state" class="form-control" name="shipping_state" value="choi" placeholder="Enter state">
 						</div>
 						<div class="form-group">
-							<label for="last_name">Zipcode:</label>
-							<input type="last_name" class="form-control" name="last_name" value="choi" placeholder="Enter last name">
+							<label for="zipcode">Zipcode:</label>
+							<input type="zipcode" class="form-control" name="shipping_zipcode" value="choi" placeholder="Enter zipcode">
 						</div>
-						</form>
+						
 					</div>
 
 					<div class="col-sm-4 pull-right" style="margin-top: 60px"> 
@@ -148,26 +162,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<h4 style="margin: 20px 0">Billing Address</h4>
 						
 						<div class="form-group">
-							<label for="last_name">Address:</label>
-							<input type="last_name" class="form-control" name="last_name" value="choi" placeholder="Enter last name">
+							<label for="address">Address:</label>
+							<input type="address" class="form-control" name="billing_address" value="choi" placeholder="Enter address">
 						</div>
 						<div class="form-group">
-							<label for="last_name">Address 2:</label>
-							<input type="last_name" class="form-control" name="last_name" value="choi" placeholder="Enter last name">
+							<label for="address2">Address 2:</label>
+							<input type="address" class="form-control" name="billing_address2" value="choi" placeholder="Enter address2">
 						</div>
 						<div class="form-group">
-							<label for="last_name">City:</label>
-							<input type="last_name" class="form-control" name="last_name" value="choi" placeholder="Enter last name">
+							<label for="city">City:</label>
+							<input type="city" class="form-control" name="billing_city" value="choi" placeholder="Enter city">
 						</div>
 						<div class="form-group">
-							<label for="last_name">State:</label>
-							<input type="last_name" class="form-control" name="last_name" value="choi" placeholder="Enter last name">
+							<label for="state">State:</label>
+							<input type="state" class="form-control" name="billing_state" value="choi" placeholder="Enter state">
 						</div>
 						<div class="form-group">
-							<label for="last_name">Zipcode:</label>
-							<input type="last_name" class="form-control" name="last_name" value="choi" placeholder="Enter last name">
+							<label for="zipcode">Zipcode:</label>
+							<input type="zipcode" class="form-control" name="billing_zipcode" value="choi" placeholder="Enter zipcode">
 						</div>
-						</form>
+						
 					</div>
 				
 
@@ -188,15 +202,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<input type="email" class="form-control" name="email" value="micheal@gmail.com" placeholder="Enter email">
 							</div>
 
-							<h3>Shipping Information</h3>
-							<input type="hidden" name="submit" value="register">
-							<button type="submit" class="btn btn-default">Submit</button>
-							<p><a href="/signin">Already have an account? Login</a></p>
+							<input type="hidden" name="submit" value="">
+							<button  type = "submit" class="btn">Pay</button>
 							
+												
 						</div>
 					</div>
 
 				</form>
+
+
+				
+
+						
 			</div>
 		
 	</div>
