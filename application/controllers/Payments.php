@@ -12,6 +12,8 @@ class Payments extends CI_Controller {
     {
          // var_dump($this->input->post());
          // die;
+
+        //display charging interface
          $this->load->view("cart/charge", array('userinfo', $this->input->post()) ) ;
                 
     }

@@ -83,15 +83,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
     
       <div class="col-lg-10"> 
-
-        <script
-                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="pk_test_PrTLnuGBrMms6lkvy5rdAdbq"
-                data-image="/square-image.png"
-                data-name="Demo Site"
-                data-description="2 widgets ($20.00)"
-                data-amount="2000">
-        </script>
+        <form action="/payments/charge" method="post">
+          <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="pk_test_PrTLnuGBrMms6lkvy5rdAdbq"
+                  data-image="/square-image.png"
+                  data-name="Demo Site"
+                  data-description="2 widgets ($20.00)"
+                  data-amount="2000">
+          </script>
+        </form>
 
       </div>
 

@@ -19,7 +19,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- To use bootstrap -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="/assets/css/style.css" rel="stylesheet">
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 	<script src="/assets/js/bootstrap.min.js"></script>	
 	
@@ -32,33 +31,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 	
 	<script type="text/javascript">
+
 	$(document).ready(function(){
 
-
-		$(document).on("click", "a#category", function(){
+		$("a#update-link").click(function() {
+			var tmp = $(this).parent().siblings();
 			$.ajax({
 				url: $(this).attr("href")
 			}).done(function(data){
-				$("div.item_result").html(data);
-			});
+				tmp.html(data);
+			})
 			return false;
-		});
+		})
 
-		$(document).on("click", "a#product", function(){
-			$.ajax({
-				url: $(this).attr("href")
-			}).done(function(data){
-				$("div.item_result").html(data);
-			});
-			return false;
-		});
+		// $(this).on("click", "#update-link", function() {
+		// 	alert("work");
+		// });
 
-		//------adding stripe-----
+
+		// $('#update-qty').on("click", function(output){
+		// 	console.log("testing");
+		// 	return false;
+
+		// });
+
+		// $(document).on("click", "a#category", function(){
+		// 	$.ajax({
+		// 		url: $(this).attr("href")
+		// 	}).done(function(data){
+		// 		$("div.item_result").html(data);
+		// 	});
+		// 	return false;
+		// });
+
+		// $(document).on("click", "a#product", function(){
+		// 	$.ajax({
+		// 		url: $(this).attr("href")
+		// 	}).done(function(data){
+		// 		$("div.item_result").html(data);
+		// 	});
+		// 	return false;
+		// });
+
+
+		// $(document).on("click", 'a#update', function(){
+		// 	alert("work");
+		// 	// $.ajax({
+		// 	// 	url: $(this).attr("href")
+		// 	// }).done(function(data){
+		// 	// 	console.log(data);
+		// 	// 	console.log($(this).parent());	
+		// 	// 	$(this).parent().siblings().html(data);
+		// 	// });
+		// 	return false;
+		// });
+
+		
+
+		
 		
 
 
-
-	})
+	});
 
 	</script>
 
@@ -122,11 +156,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<td><?=$product['name']?></td>
 									<td><?=$product['price']?></td>
 									<td>
-										<p><?=$product['quantity']?>
+										
+										<p id="update-qty" style="display:inline-block">
 											
-											<a data-toggle="modal" href="#delete-confirmation" class="pull-right">remove</a> 
-											<a data-toggle="modal" href="#update-confirmation" class="pull-right">update</a> 
+											<?php require_once('update.php'); ?>
 										</p>
+
+										<p style="display:inline-block" class="pull-right">
+											<a data-toggle="modal" href="#delete-confirmation" class="pull-right">remove</a> 
+											<a id="update-link" data-toggle="modal" href="/carts/update/<?=$product_id?>" class="pull-right">update</a>											
+										</p>
+
+
 									</td>
 									<td>$<?= $product['price']*$product['quantity'] ?></td>		
 								</tr>
