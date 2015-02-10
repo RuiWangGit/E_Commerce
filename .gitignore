@@ -1,5 +1,9 @@
+<<<<<<< HEAD
+database.php
+=======
 .DS_Store
 database.php
 .secret
 .project
 *.swp
+>>>>>>> 1fec93f0520ded49e2e792816df53f12e4c1f191
