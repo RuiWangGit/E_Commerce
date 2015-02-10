@@ -13,7 +13,6 @@ class Home extends CI_Controller {
 		$this->load->model("Search");
 		$this->load->library("pagination");
 		$this->view_data["categories"] = $this->Search->fetch_categories();
-		// session_destroy();
 	}
 
 	public function index()
