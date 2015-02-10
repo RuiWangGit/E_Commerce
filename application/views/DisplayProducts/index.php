@@ -13,6 +13,27 @@
 </head>
 <body>
 	<a href="CreateProducts">Add new product</a>
-	<?= $products ?>
+	<table>
+		<thead>
+			<th>Picture</th>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Inventory Count</th>
+			<th>Quantity sold</th>
+			<th>Action</th>
+		</thead>
+		<tbody>
+<?php
+	// var_dump($products);
+	foreach ($products as $product) {
+		echo "<tr>";
+		foreach ($product as $product_attribute) {
+			echo "<td>{$product_attribute}</td>";
+		}
+		echo "<td>0</td><td><a href='/EditProducts/index/".$product['id']."'>Edit</a> | <a href='/DeleteProducts/index/".$product['id']."'>delete</a></td></tr>";
+	}
+?>
+		</tbody>
+	</table>
 </body>
 </html>

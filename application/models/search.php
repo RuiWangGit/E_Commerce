@@ -48,12 +48,34 @@ class Search extends CI_Model {
 	public function create_product(){
 		$query = "INSERT INTO products (name, description, price, inventory, main_image, image_path_1, image_path_2, image_path_3, category_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
 		$values= array($this->input->post('name'), $this->input->post('description'), $this->input->post('price'), $this->input->post('inventory'), 
-			$this->input->post('main_image'), $this->input->post('image_path_1'), $this->input->post('image_path_2'), $this->input->post('image_path_3'),
-			$this->input->post('category_id'));
+					   $this->input->post('main_image'), $this->input->post('image_path_1'), $this->input->post('image_path_2'), $this->input->post('image_path_3'),
+					   $this->input->post('category_id'));
 		$this->db->query($query, $values);  
 	}
-	// public function delete_product(){
-	// 	$query = 
-	// }
+	public function edit_product(){
+		$query = "UPDATE products SET (name, description, price, inventory, main_image, image_path_1, image_path_2, image_path_3, category_id, updated_at) 
+				  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+				  WHERE id = ?";
+		$values= array($this->input->post('name'), $this->input->post('description'), $this->input->post('price'), $this->input->post('inventory'), 
+					   $this->input->post('main_image'), $this->input->post('image_path_1'), $this->input->post('image_path_2'), $this->input->post('image_path_3'),
+					   $this->input->post('category_id'));
+		$this->db->query($query, $values);
+	}
+	public function display_products(){
+		$query = "SELECT main_image, id, name, inventory FROM products ORDER BY id DESC";
+		return $this->db->query($query)->result_array();
+	}
+
+
 }
+
+
+
+
+
+
+
+
+
+
 ?>
