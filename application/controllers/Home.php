@@ -17,7 +17,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->session->set_userdata("page_at", $this->uri->segment(2));
+		$this->session->set_userdata("page_at", "index");
 		
 		$sort_by = ($this->uri->segment(3)) ? $this->uri->segment(3) : "low_price";
 		$total_rows = $this->Search->record_count();
@@ -29,7 +29,7 @@ class Home extends CI_Controller {
 
 	public function category()
 	{
-		$this->session->set_userdata("page_at", $this->uri->segment(2));
+		$this->session->set_userdata("page_at", "category");
 		$this->session->set_userdata("category_id", $this->uri->segment(3));
 
 		$category_id = $this->uri->segment(3);
@@ -44,7 +44,7 @@ class Home extends CI_Controller {
 
 	public function search_keyword()
 	{
-		$this->session->set_userdata("page_at", $this->uri->segment(2));
+		$this->session->set_userdata("page_at", "search_keyword");
 
 		// save keyword in session for new http request especailly pagination
 		if($this->input->post("keyword")) {
@@ -69,7 +69,6 @@ class Home extends CI_Controller {
 		$page_at = $this->session->userdata("page_at");
 
 		if($page_at == "index") {
-			echo $page_at;
 			redirect("/home/index/". $this->input->post("sort"));
 		}
 		else if($page_at == "category") {
