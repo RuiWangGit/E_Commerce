@@ -1,7 +1,6 @@
-<div class="resulta">
 <h2><?= $title; ?></h2>
 <div>Sorted by
-	<form id="sort" method="post" action="/home/sort_by">
+	<form method="post" action="/home/sort">
 		<select name="sort">
 			<option value="low_price">Low Price</option>
 			<option value="high_price">High Price</option>
@@ -24,4 +23,3 @@
 	}
 ?>
 	<div id="pagination" class="text-center"><?= $links; ?></div>
-</div>
