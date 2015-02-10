@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<nav>
 					<ul class="nav navbar-nav">
 						<li><a href='/'>Home</a></li>
-						<li><a href='/'>Shopping cart(1)</a></li>
+						<li><a href='/carts'>Shopping cart ( <?= count($this->session->userdata('selected_products')) ?> )</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -73,7 +73,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			
 		</div>
-
 
 		<div class="col-lg-10"> 
 
@@ -96,8 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<td><?=$product['price']?></td>
 							<td>
 								<p><?=$product['quantity']?>
-									<a class="pull-right" href="#delete-confirmation" role="button" data-toggle="modal">remove</a>
-									<a class = "pull-right" href="/carts/update/<?=$product['id']?>">update</a> 
+									
 								</p>
 							</td>
 							<td><?= $product['price']*$product['quantity'] ?></td>		
@@ -107,7 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 				<p class="pull-right">
 					<a class = "btn btn-large btn-info " href="/carts">Edit your cart</a>
-					<a class="btn btn-large btn-info" href="" >Continue shopping</a>
+					<a class="btn btn-large btn-info" href="/home" >Continue shopping</a>
 				</p>	
 				
 	

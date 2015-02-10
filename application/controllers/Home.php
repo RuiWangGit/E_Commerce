@@ -13,7 +13,9 @@ class Home extends CI_Controller {
 	}
 
 	public function index (){
-		header("Location:/carts/add");
+		// $this->session->sess_destroy();
+		// $this->session->set_userdata('selected_prouducts',[]);
+		header("Location:/add");
 	}
 
 
