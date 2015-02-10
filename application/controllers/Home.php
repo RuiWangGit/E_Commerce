@@ -16,11 +16,11 @@ class Home extends CI_Controller {
 		// session_destroy();
 	}
 
-	public function index (){
+	//public function index (){
 		// $this->session->sess_destroy();
 		// $this->session->set_userdata('selected_prouducts',[]);
-		header("Location:/add");
-	}
+	//	header("Location:/add");
+	//	}
 
 
 
