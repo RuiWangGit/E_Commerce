@@ -65,6 +65,20 @@ class Search extends CI_Model {
 		$query = "SELECT main_image, id, name, inventory FROM products ORDER BY id DESC";
 		return $this->db->query($query)->result_array();
 	}
+	public function edit_product_fetch($product_id){
+		$query = "SELECT products.name, products.description, products.main_image, products.image_path_1, products.image_path_2, products.image_path_3, inventory, price, categories.name AS 'category' FROM products
+				  JOIN categories ON products.category_id = categories.id
+				  WHERE products.id = ?";
+		$value = array($product_id);
+		return $this->db->query($query, $value)->result_array();
+	}
+	public function delete_product($product_id){
+		$query = "DELETE FROM products
+				  WHERE products.id = ?";
+		$value = $product_id;
+		$this->db->query($query, $value);
+
+	}
 
 
 }
