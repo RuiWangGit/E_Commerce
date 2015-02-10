@@ -15,15 +15,7 @@ class Home extends CI_Controller {
 		$this->view_data["categories"] = $this->Search->fetch_categories();
 	}
 
-	public function index (){
-		// $this->session->sess_destroy();
-		// $this->session->set_userdata('selected_prouducts',[]);
-		header("Location:/add");
-	}
-
-
-
-	public function index2()
+	public function index()
 	{
 		$this->session->set_userdata("page_at", $this->uri->segment(2));
 		
