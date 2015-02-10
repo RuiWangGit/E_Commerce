@@ -62,11 +62,11 @@ class  Carts extends CI_Controller {
 
 
     public function add(){
-        //$product_id = $this->input->post('id');
-       // $product_qty = $this->input->post('quantity');
+        $product_id = $this->input->post('id');
+       $product_qty = $this->input->post('quantity');
         //$this->session->set_userdata('selected_products',"");
-        $product_id = 4;
-        $product_qty = 3;
+        // $product_id = 4;
+        // $product_qty = 3;
 
         $this->load->model("Product");
         $product = $this->Product->get_one_product($product_id);
