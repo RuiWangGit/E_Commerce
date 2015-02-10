@@ -14,43 +14,92 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="/assets/js/jquery-2.1.3.min.js"></script>
 
 	<script type="text/javascript">
-		$(document).ready(function(){
 
-			$("form#search").on("submit", function(){
-				$.ajax({
-					url: $(this).attr("action"),
-					type: "POST",
-					data: $(this).serialize()
-				}).done(function(data){
-					$("div.item_result").html(data);
-				});
-				return false;
-			})
+		// $(document).ready(function(){
+		// 	$(document).on("submit", "form#sort", function(){
+		// 		$.ajax({
+		// 			url: $(this).attr("action"),
+		// 			type: "POST",
+		// 			data: $(this).serialize()
+		// 		}).done(function(data){
+		// 			// console.log(data);
+		// 			$(".item_result").html(data);
+		// 		});
+		// 		return false;
+		// 	});
+		// 	// $(document).on("click", "#pagination a", function(){
+		// 	// 	$.ajax({
+		// 	// 		url: $(this).attr("href")
+		// 	// 	}).done(function(data){
+		// 	// 		console.log(data);
+		// 	// 	})
+		// 	// 	return false;
+		// 	// })
+		// })
 
-			$(document).on("click", "a#category", function(){
-				$.ajax({
-					url: $(this).attr("href")
-				}).done(function(data){
-					$("div.item_result").html(data);
-				});
-				return false;
-			});
+		// $(document).ready(function(){
 
-			$(document).on("click", "a#product", function(){
-				$.ajax({
-					url: $(this).attr("href")
-				}).done(function(data){
-					console.log(data);
-					$("div.item_result").html(data);
-				});
-				return false;
-			});
-		})
+			// $("form#search").on("submit", function(){
+			// 	$.ajax({
+			// 		url: $(this).attr("action"),
+			// 		type: "POST",
+			// 		data: $(this).serialize()
+			// 	}).done(function(data){
+			// 		$("div.item_result").html(data);
+			// 	});
+			// 	// return false;
+			// });
+
+
+			// display all products on result section by category
+			// $(document).on("click", "a#category", function(){
+			// 	$.ajax({
+			// 		url: $(this).attr("href")
+			// 	}).done(function(data){
+			// 		$("div.item_result").html(data);
+			// 	});
+			// 	return false;
+			// });
+
+			// move to product description secion
+			// $(document).on("click", "a#product", function(){
+			// 	$.ajax({
+			// 		url: $(this).attr("href")
+			// 	}).done(function(data){
+			// 		$("div.item_result").html(data);
+			// 	});
+			// 	return false;
+			// });
+
+			// $(document).on("click", "#pagination a", function(){
+			// 	$.ajax({
+			// 		url: $(this).attr("href")
+			// 	}).done(function(data){
+			// 		// console.log(data);
+			// 		// $("div.item_result").html(data);
+			// 	});
+			// 	// return false;
+			// })
+		// })
+
+		// var range = function(data, page, size) {
+		// 	var start_index = (page-1) * size;
+		// 	if(data.length < start_index) return [];
+		// 	else return data.splice(start_index, size);
+		// }
+
+		// var pageCount = function(data, size) {
+		// 	var result = [];
+		// 	for(var i = 0; i < Math.ceil(data.length / size); i++) {
+		// 		result.push(i);
+		// 	}
+		// 	return result;
+		// }
 
 	</script>
 
 	<style type="text/css">
-		.item_result div {
+		.item_result div.item {
 			display: inline-block;
 			width: 200px;
 		}
@@ -72,8 +121,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</header>
 	<div class="container">
 		<div class="col-lg-2">
-			<form id="search" method="post" action="index.php/home/search_keyword">
-				<input type="text" name="keyword">
+			<form id="search" method="post" action="/home/search_keyword">
+				<input type="text" name="keyword" placeholder="keyword for search">
 				<button type="submit"><i class="fa fa-search"></i></button>
 			</form>
 		
@@ -82,27 +131,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php
 			foreach($categories as $category) {
 ?>
-				<li><a id="category" href="index.php/home/category/<?= $category['id'] ?>"><?= $category["name"] ?></a></li>
+				<li><a id="category" href="/home/category/<?= $category['id'] ?>"><?= $category["name"] ?></a></li>
 
 <?php
 			}
 ?>
 			</ul>
 		</div>
-		<div class="col-lg-10"> 
-			<h2>Tshirts</h2>
-			Sorted by
-				<select name="sorted_by">
-					<option>Price</option>
-					<option>Most Popualr</option>
-				</select>
-
+		<div class="col-lg-10 main"> 
 			<div class="item_result">
-				<?php include("product_list.php") ?>
+				<?php
+					if($products != "") {
+						include("product_list.php");
+					}
+					else {
+						include("product_detail.php");
+					}
+				?>
 			</div>
-
 		</div>
 	</div>
-
+	<footer>
+<div class="container text-center">
+	<div class="row">
+		Copyright © BOOT-CAMP 2015 All rights reserved.</p>
+	</div>
+</div>
 </body>
 </html>
