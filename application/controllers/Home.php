@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 
 	private $view_data = [];
 	private $sort_by = "popular";
-	private $page_limit = 12;
+	private $page_limit = 8;
 
 	public function __construct()
 	{

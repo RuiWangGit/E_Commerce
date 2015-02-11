@@ -1,5 +1,5 @@
 <?php
-	$limits = ["4"=>4, "8"=>8, "12"=>12];
+	$limits = ["8"=>8, "12"=>12, "24"=>24];
 	$sorts = ["popular"=>"Most Popular", "low_price"=>"Low Price", "high_price"=>"High Price"];
 	foreach($limits as $key=>$limit) {
 		if($page_limit == $key) {
@@ -22,9 +22,8 @@
 ?>
 <div class="title-bar">
 	<h1><?= $title; ?></h1>
-	<?= $page_limit ?>
-	<?= $sort_by ?>
-	<form id="filter" class="form-inline text-right" method="post" action="/home/sort_by">
+	<form id="filter" class="form-inline" method="post" action="/home/sort_by">
+		<label class="label-control">Filter by:</label>
 		<select class="form-control" name="limit">
 <?php
 		foreach($limits as $key=>$limit) {
