@@ -10,19 +10,7 @@ class Search extends CI_Model {
 		$query = "SELECT * FROM categories";
 		return $this->db->query($query)->result_array();
 	}
-	// public function fetch_products($limit, $start)
-	// {
-	// 	$this->db->limit($limit, $start);
- //        $query = $this->db->get("products");
- 
- //        if ($query->num_rows() > 0) {
- //            foreach ($query->result() as $row) {
- //                $data[] = $row;
- //            }
- //            return $data;
- //        }
- //        return false;
-	// }
+	
 	public function fetch_all_products()
 	{
 		$query = "SELECT * FROM products";
