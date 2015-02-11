@@ -1,6 +1,17 @@
-<div class="row">
+<div id="detail" class="row clearfix">
 	<div class="col-lg-4">
-		<img src="<?= $product[0]['main_image']?>" width="300">
+		<img src="<?= $product[0]['main_image']?>" class="img-responsive main-image">
+		<div class="thumb-container clearfix">
+			<div class="thumb">
+				<img src="<?= $product[0]['image_path_1']; ?>">
+			</div>
+			<div class="thumb">
+				<img src="<?= $product[0]['image_path_2']; ?>">
+			</div>
+			<div class="thumb">
+				<img src="<?= $product[0]['image_path_3']; ?>">
+			</div>
+		</div>
 	</div>
 	<div class="col-lg-8">
 		<h3><?= $product[0]['name'] ?></h3>
@@ -22,7 +33,17 @@
 				</div>
 			</form>
 		</div>
-		<p class="description"><?= $product[0]['description']?></p>
-		
+		<p class="description"><?= $product[0]['description']?></p>		
 	</div>
+</div>
+<div id="suggest" class="row clearfix">
+	<ul class="text-center">
+		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
+		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
+		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
+		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
+		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
+		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
+		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
+	</ul>
 </div>

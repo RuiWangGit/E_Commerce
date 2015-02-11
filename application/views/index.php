@@ -17,6 +17,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$(document).ready(function(){
 			$("form#filter select").change(function(){
 				$(this).parent().submit();
+			});
+
+			$(".thumb img").click(function(){
+				$(".main-image").attr("src", $(this).attr("src"));
 			})
 		})
 	</script>
@@ -128,15 +132,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			top: 20%;
 		}
 
-		.item_result p.description {
-			padding: 20px 0;
-		}
-
 		div.item img {
 			width: 200px;
 		}
 
-		div#pagination {
+		div.pagination {
 			margin: 30px 0;
 			padding: 10px 0;
 		}
@@ -148,6 +148,60 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			background-color: #eee;
 			border-radius: 3px;
 			padding: 10px;
+		}
+
+		#detail .main-image {
+
+		}
+
+		#detail img {
+			display: block;
+			margin: 0 auto;
+		}
+
+		#detail .thumb-container {
+			margin: 20px 0;
+			overflow: hidden;
+		}
+
+		#detail .thumb {
+			width: 33.33%;
+			height: 100px;
+			float: left;
+		}
+
+		.thumb img {
+			display: block;
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+			cursor: pointer;
+		}
+
+		#detail p.description {
+			padding: 20px 0;
+		}
+
+		#suggest {
+			width: 100%;
+			margin: 20px;
+		}
+
+		#suggest ul {
+			/*display: block;*/
+			margin: 0;
+			padding: 0;
+			/*list-style: none;*/
+		}
+
+		#suggest li {
+			display: inline-block;
+			margin: 5px;
+		}
+
+		.carts-img {
+			width: 50px;
+			height: 50px;
 		}
 
 		footer {
