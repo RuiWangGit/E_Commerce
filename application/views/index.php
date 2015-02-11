@@ -79,11 +79,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		.item_result div.item {
 			display: inline-block;
 			width: 200px;
+			height: 200px;
 			margin-right: 30px;
 			margin-bottom: 30px;
 		}
 
-		.item_result p {
+		div.item a,
+		div.item img {
+			color: #fff;
+			display: block;
+			position: relative;
+			overflow: hidden;
+			width: 200px;
+			height: 200px;
+			border-radius: 5px;
+		}
+
+		div.item a div {
+			position: absolute;
+			background: rgba(0, 0, 0, 0.5);
+			width: 200px;
+			height: 200px;
+			padding: 10px;
+			top: 80%;
+			-webkit-transition: all 0.3s ease-in-out;
+			-moz-transition: all 0.3s ease-in-out;
+			-o-transition: all 0.3s ease-in-out;
+			-ms-transition: all 0.3s ease-in-out;
+			transition: all 0.3s ease-in-out;
+		}
+
+		div.item a:hover div {
+			top: 20%;
+		}
+
+		.item_result p.description {
 			padding: 20px 0;
 		}
 

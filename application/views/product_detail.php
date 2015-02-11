@@ -22,7 +22,7 @@
 				</div>
 			</form>
 		</div>
-		<p><?= $product[0]['description']?></p>
+		<p class="description"><?= $product[0]['description']?></p>
 		
 	</div>
 </div>
