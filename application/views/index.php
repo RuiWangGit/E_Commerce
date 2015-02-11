@@ -15,13 +15,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$("form#sort select").change(function(){
+			$("form#filter select").change(function(){
 				$(this).parent().submit();
 			})
 		})
 	</script>
 
 	<style type="text/css">
+
+		#main-section {
+			margin-top: 80px;
+		}
 
 		form#search input {
 			width: 90%;
@@ -33,7 +37,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 
 		ul.category {
+			list-style: none;
 			padding: 5px;
+			line-height: 1.8em;
+		}
+
+		ul a {
+			font-size: 1.1em;
+			color: #444;
+		}
+
+		ul a:hover {
+			color: #444;
 		}
 
 		.item_result {
@@ -70,7 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			margin-top: 10px;
 		}
 
-		.item_result form#sort {
+		.item_result form#filter {
 			display: inline-block;
 			margin-top: 25px;
 			float: right;
@@ -128,9 +143,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		div#pagination a, div#pagination strong {
 			font-size: 1.1em;
+			color: #444;
 			margin: 0 5px 0 0;
 			background-color: #eee;
-			border: 1px solid #eae;
 			border-radius: 3px;
 			padding: 10px;
 		}
@@ -146,28 +161,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 </head>
 <body>
-	<header class="navbar navbar-inverse">
+	<header class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
-			<a href='/' class='navbar-brand'>Cobbling Dojo BOOTCamp</a>
+			<a href='/' class='navbar-brand'><i class="fa fa-child"></i> BOOTCamp</a>
 			<div class="navbar-right">
 				<nav>
 					<ul class="nav navbar-nav">
-						<li><a href='/'>Home</a></li>
 						<li><a href='/carts'>Shopping cart ( <?= count($this->session->userdata('selected_products')) ?> )</a></li>
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</header>
-	<div class="container">
+	<div id="main-section" class="container">
 		<div class="row">
 			<div class="col-sm-12 col-md-offset-2 col-md-10">
 				
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-12 col-md-2">
-				<h4>Categories</h4>
+			<div class="col-md-2">
+				<h3>Categories</h3>
 				<ul class="category">
 <?php
 			foreach($categories as $category) {
@@ -181,7 +195,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</ul>
 			</div>
 			
-			<div class="col-sm-12 col-md-10"> 
+			<div class="col-md-10"> 
 				<!-- search box -->
 				<form id="search" class="form-inline clearfix" method="post" action="/home/search_keyword">
 					<input class="form-control" type="text" name="keyword" placeholder="keyword for search">

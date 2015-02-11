@@ -5,7 +5,7 @@
 	<div class="col-lg-8">
 		<h3><?= $product[0]['name'] ?></h3>
 		<div class="price">
-			<h4>$<?= $product[0]['price']?></h4>
+			<h4><i class="fa fa-usd"></i><?= $product[0]['price']?></h4>
 			<form method="post" action="/add/">
 				<input type="hidden" name="id" value="<?= $product[0]['id']?>">
 				<div class="col-sm-8">

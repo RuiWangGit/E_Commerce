@@ -4,16 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 
 	private $view_data = [];
+	private $sort_by = "popular";
 	private $page_limit = 12;
 
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->output->enable_profiler();
+		$this->output->enable_profiler();
 		$this->load->model("Search");
 		$this->load->library("pagination");
 		$this->view_data["categories"] = $this->Search->fetch_categories();
-		if  ( !$this->session->userdata("selected_products") ){
+
+		if(!$this->session->userdata("sort_by")) {
+			$this->session->set_userdata("sort_by", $this->sort_by);
+		}
+
+		if(!$this->session->userdata("page_limit")) {
+			$this->session->set_userdata("page_limit", $this->page_limit);
+		}
+
+		if(!$this->session->userdata("selected_products")) {
 			$this->session->set_userdata("selected_products", []);
 		}
 		
@@ -22,14 +32,13 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$this->session->set_userdata("page_at", "index");
-
 		
-		$sort_by = ($this->uri->segment(3)) ? $this->uri->segment(3) : "popular";
+		$sort_by = ($this->uri->segment(3)) ? $this->uri->segment(3) : $this->session->userdata("sort_by");
 		$total_rows = $this->Search->record_count();
 
-		$this->products_list("/home/index/$sort_by", $total_rows, 4, $sort_by, 0);
 		$this->view_data["title"] = "All $total_rows items";
-		$this->load->view("index", $this->view_data);
+		$this->products_list("/home/index/$sort_by", $total_rows, 4, $sort_by, 0);
+		$this->retrieve_page();
 	}
 
 	public function category()
@@ -38,13 +47,13 @@ class Home extends CI_Controller {
 		$this->session->set_userdata("category_id", $this->uri->segment(3));
 
 		$category_id = $this->uri->segment(3);
-		$sort_by = ($this->uri->segment(4)) ? $this->uri->segment(4) : "popular";
+		$sort_by = ($this->uri->segment(4)) ? $this->uri->segment(4) : $this->session->userdata("sort_by");
 		
 		$total_rows = $this->Search->fetch_count_by_category($category_id)["count"];
 
-		$this->products_list("/home/category/$category_id/$sort_by", $total_rows, 5, $sort_by, $category_id);
 		$this->view_data["title"] = $this->Search->fetch_category_by_id($category_id)["name"];
-		$this->load->view("index", $this->view_data);
+		$this->products_list("/home/category/$category_id/$sort_by", $total_rows, 5, $sort_by, $category_id);
+		$this->retrieve_page();
 	}
 
 	public function search_keyword()
@@ -60,17 +69,21 @@ class Home extends CI_Controller {
 			$keyword = $this->session->userdata("keyword");
 		}
 
-		$sort_by = ($this->uri->segment(4)) ? $this->uri->segment(4) : "popular";
+		$sort_by = ($this->uri->segment(4)) ? $this->uri->segment(4) : $this->session->userdata("sort_by");
 
 		$total_rows = $this->Search->fetch_count_by_keyword($keyword)["count"];
 
-		$this->products_list("/home/search_keyword/$keyword/$sort_by", $total_rows, 4, $sort_by, $keyword);
 		$this->view_data["title"] = "Search by $keyword";
-		$this->load->view("index", $this->view_data);
+		$this->products_list("/home/search_keyword/$keyword/$sort_by", $total_rows, 5, $sort_by, $keyword);
+		$this->retrieve_page();
 	}
 
+	// filter process from the view page
 	public function sort_by()
 	{
+		$this->session->set_userdata("sort_by", $this->input->post("sort"));
+		$this->session->set_userdata("page_limit", $this->input->post("limit"));
+
 		$page_at = $this->session->userdata("page_at");
 
 		if($page_at == "index") {
@@ -101,9 +114,12 @@ class Home extends CI_Controller {
 	{
 		$page_config = ["base_url" 		=> $base_url,
 						"total_rows" 	=> $total_rows,
-						"per_page"		=> $this->page_limit,
+						"per_page"		=> $this->session->userdata("page_limit"),
 						"uri_segment"	=> $uri_segment
 						];
+		$choice = $page_config["total_rows"] / $page_config["per_page"];
+		$page_config["num_links"] = round($choice);
+
 		$this->pagination->initialize($page_config);
 
 		$page = ($this->uri->segment($uri_segment)) ? $this->uri->segment($uri_segment) : 0;
@@ -119,6 +135,13 @@ class Home extends CI_Controller {
 		else if(preg_match("/search_keyword/", $base_url)) {
 			$this->view_data["products"] = $this->Search->fetch_limited_products_by_keyword($wild_card, $page, $page_config["per_page"], $sort_by);
 		}
+	}
+
+	private function retrieve_page()
+	{
+		$this->view_data["sort_by"] = $this->session->userdata("sort_by");
+		$this->view_data["page_limit"] = $this->session->userdata("page_limit");
+		$this->load->view("index", $this->view_data);
 	}
 }
 
