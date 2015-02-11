@@ -91,7 +91,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</thead>
 					<tbody>
 						<tr>
-							<td><img class='carts-img img-responsive' src='<?= $product["main_image"]?>' alt="no image"><br/><?=$product['name']?></td>
+							<td><img  style="width:50px; height:50px" class='carts-img img-responsive' src='<?= $product["main_image"]?>' alt="no image"><br/><?=$product['name']?></td>
 							<td><?=$product['price']?></td>
 							<td>
 								<p><?=$product['quantity']?>
