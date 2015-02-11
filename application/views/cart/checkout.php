@@ -33,76 +33,46 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script type="text/javascript">
 
 	$(document).ready(function(){
-
-		// $("a#update-link").click(function() {
-		// 	var tmp = $(this).parent().siblings();
-		// 	$.ajax({
-		// 		url: $(this).attr("href")
-		// 	}).done(function(data){
-		// 		tmp.html(data);
-		// 	})
-		// 	return false;
-		// })
 		var tmp;
+		var save; 
+		var id;
 
-		$("a#update-link").click(function() {
-			tmp = $(this).parent().siblings();
+		// console.log("tttt");
+		$(document).on("click", "a#update-link", function(){
+			// console.log("tttt2222");
+			tmp = $(this).parent().children('p');
+			console.log(tmp);
+			save = $(this);
+			console.log($(this));
+
+			id =$(this).attr('href');
+			console.log('post url:',id);
 			
 			
-			tmp.html("<textarea></textarea>");
+			tmp.html("<form id='saveForm' action='"+id+"' method='post'><textarea style='width:45px; height:26px;' name='quantity' value=''></textarea><input type='hidden' name='submit' value='save'><input style=' vertical-align:top; margin-left: 20px; ' type='submit' value='save'></form>" );
+			save.html("");// remove update keyword
 			
+			return false;	
+		});
+
+
+		$(document).on('submit', 'form#saveForm', function() {
+			console.log("++++++++++");
+			// var tmp1 = $(this).parent().parent().parent().parent();
+			// console.log(tmp1);
+			// console.log($(this));
+			$.ajax({
+				url: $(this).attr("action"),
+				type: "post",
+				data: $(this).serialize()
+			}).done(function(data){
+
+				console.log(data);
+				$('#table-input').html(data);
+				// tmp1.html(data);
+			})
 			return false;
-		})
-
-
-
-
-		// $(this).on("click", "#update-link", function() {
-		// 	alert("work");
-		// });
-
-
-		// $('#update-qty').on("click", function(output){
-		// 	console.log("testing");
-		// 	return false;
-
-		// });
-
-		// $(document).on("click", "a#category", function(){
-		// 	$.ajax({
-		// 		url: $(this).attr("href")
-		// 	}).done(function(data){
-		// 		$("div.item_result").html(data);
-		// 	});
-		// 	return false;
-		// });
-
-		// $(document).on("click", "a#product", function(){
-		// 	$.ajax({
-		// 		url: $(this).attr("href")
-		// 	}).done(function(data){
-		// 		$("div.item_result").html(data);
-		// 	});
-		// 	return false;
-		// });
-
-
-		// $(document).on("click", 'a#update', function(){
-		// 	alert("work");
-		// 	// $.ajax({
-		// 	// 	url: $(this).attr("href")
-		// 	// }).done(function(data){
-		// 	// 	console.log(data);
-		// 	// 	console.log($(this).parent());	
-		// 	// 	$(this).parent().siblings().html(data);
-		// 	// });
-		// 	return false;
-		// });
-
-		
-
-		
-		
+		});
 
 
 	});
@@ -148,27 +118,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<div class="col-lg-10" style="margin-bottom:50px"> 
 				<h3>Items in cart </h3>
-				<div class="prod">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Price</th>
-								<th>Quantity</th>
-								<th>Total</th>
-							</tr>
-						</thead>
-						<tbody>
+				<div id="table-input">			
 							<?php require('update.php'); ?>
-						</tbody>
-					</table>
-
-
-					<p class="pull-right">
-						<label style="display:block;">Total:   $<?=$total?></label>
-						<a class="btn btn-large btn-info" href="/home" >Continue shopping</a>
-					</p>	
-					
 				</div>
 			</div>
 		</div>	
@@ -270,23 +221,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 
-	<div class="modal fade" id="update-confirmation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <div class="modal-body">
-        	 <h4 class="modal-title">new quantity</h4>
-         	 <form action="/carts/update" method="post">
-        		<input type="hidden" name="id" value='<?=$product_id?>'>
-        		<input type="text" name="quantity" value="">
-          		<button type="submit" class="btn btn-default" >update</button>
-          		<button type="submit" class="btn btn-primary" data-dismiss="modal">No</button>
-          	</form>
-          
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
 
 
   <div class="modal fade" id="delete-confirmation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

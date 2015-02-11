@@ -10,6 +10,16 @@
 			return $this->db->query($query, $values)->row_array();
 		}
 
+		public function get_all_selected_products($products){
+			$res = [];
+			foreach( $products as $id=>$product){
+				$each = $this->get_one_product($id);
+				$each['quantity'] = $product['quantity'];
+				$res[$id] = $each;
+			}
+			return $res;	
+		}
+
 
 
 		public function update_inventory($id, $inventory, $quantity){
@@ -19,15 +29,7 @@
 
 		}
 
-		// public function get_inventory($id){
-		// 	//new quantity should be the inventory - quantity
-		// 	$query = "SELECT * FROM products WHERE id =? ";
-		// 	$values = array($id);
-		// 	$product = $this->db->query($query, $values)->row_array();
-		// 	return $product['inventory'];	
-		// }
 		
-
 		//single order limit
 		//inventory limit
 
