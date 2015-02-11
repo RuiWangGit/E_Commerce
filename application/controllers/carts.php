@@ -25,8 +25,8 @@ class  Carts extends CI_Controller {
         $p = $this->Product->get_one_product( $id);
            // $p = $this->Product->get_one_product($this->uri->segment(3)); 
         if ( $p['order-limit'] == null) $p['order-limit']= 5;
-        if ( $p['inventory'] > $p['order-limit'])  $this->retrieve_update($p['order-limit'], $this->session->userdata['selected_products'][$id]['quantity']);
-        else  $this->retrieve_update( $p['inventory'], $p['quantity'] );        
+        if ( $p['inventory'] > $p['order-limit'])  $this->retrieve_update($this->session->userdata['selected_products'][$id], $p['order-limit']);
+        else  $this->retrieve_update( $this->session->userdata['selected_products'][$id],$p['inventory'] );        
        // $carts_arr = $this->session->userdata('selected_products');
        // $carts_arr[$this->input->post('id')]['quantity'] = $this->input->post('quantity');
        // $this->session->set_userdata('selected_products', $carts_arr);
@@ -36,9 +36,11 @@ class  Carts extends CI_Controller {
     }
 
 
-    public function retrieve_update($limit, $quantity){
+    public function retrieve_update($product, $limit){
         //$this->Note->update($this->input->post());
-        $this->load->view('cart/update', array("product" => ['limit'=>$limit, 'quantity'=>$quantity] ));
+        // var_dump($product);
+        // die;
+        $this->load->view('cart/update', array("product" => ['limit'=>$limit, 'quantity'=>$product['quantity'], 'name'=> $product['name'], 'price'=>$product['price'] ])) ;
 
     }
 

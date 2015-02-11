@@ -89,6 +89,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   data-key="pk_test_PrTLnuGBrMms6lkvy5rdAdbq"
                   data-image="/square-image.png"
                   data-name="Demo Site"
+                  data-shipping-address
+                  data-billing-address
                   data-description="2 widgets ($20.00)"
                   data-amount="2000">
           </script>

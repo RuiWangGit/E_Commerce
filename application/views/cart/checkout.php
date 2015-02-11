@@ -34,15 +34,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	$(document).ready(function(){
 
+		// $("a#update-link").click(function() {
+		// 	var tmp = $(this).parent().siblings();
+		// 	$.ajax({
+		// 		url: $(this).attr("href")
+		// 	}).done(function(data){
+		// 		tmp.html(data);
+		// 	})
+		// 	return false;
+		// })
+		var tmp;
+
 		$("a#update-link").click(function() {
-			var tmp = $(this).parent().siblings();
-			$.ajax({
-				url: $(this).attr("href")
-			}).done(function(data){
-				tmp.html(data);
-			})
+			tmp = $(this).parent().siblings();
+			
+			
+			tmp.html("<textarea></textarea>");
+			
 			return false;
 		})
+
+
+
 
 		// $(this).on("click", "#update-link", function() {
 		// 	alert("work");
@@ -146,35 +159,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</tr>
 						</thead>
 						<tbody>
-							<?php
-							$product_id =null;
-							$total = 0;
-							foreach($selected_products as $product){
-								$product_id = $product['id'];
-								?>
-								<tr>
-									<td><?=$product['name']?></td>
-									<td><?=$product['price']?></td>
-									<td>
-										
-										<p id="update-qty" style="display:inline-block">
-											
-											<?php require('update.php'); ?>
-										</p>
-
-										<p style="display:inline-block" class="pull-right">
-											<a data-toggle="modal" href="#delete-confirmation" class="pull-right">remove</a> 
-											<a id="update-link" data-toggle="modal" href="/carts/update/<?=$product_id?>" class="pull-right">update</a>											
-										</p>
-
-
-									</td>
-									<td>$<?= $product['price']*$product['quantity'] ?></td>		
-								</tr>
-									<?php
-									$total += $product['price']*$product['quantity'];
-							}
-							?>
+							<?php require('update.php'); ?>
 						</tbody>
 					</table>
 
@@ -280,11 +265,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 					</div>
 			
-				</form>
-				
-			
-						
-			
+				</form>	
 		
 	</div>
 
