@@ -20,7 +20,7 @@ class Search extends CI_Model {
 		$value = array($id);
 		return $this->db->query($query, $value)->row_array();
 	}
-
+	
 	public function fetch_all_products()
 	{
 		$query = "SELECT * FROM products";
