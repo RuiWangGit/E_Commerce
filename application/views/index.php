@@ -9,6 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title>Cobbling Dojo BOOTCamp</title>
 </head>
 <body>
-<h1>Cobbling Dojo! BOOTCamp</h1>
+
 </body>
 </html>
