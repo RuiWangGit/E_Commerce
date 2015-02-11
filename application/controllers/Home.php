@@ -13,12 +13,17 @@ class Home extends CI_Controller {
 		$this->load->model("Search");
 		$this->load->library("pagination");
 		$this->view_data["categories"] = $this->Search->fetch_categories();
+		if  ( !$this->session->userdata("selected_products") ){
+			$this->session->set_userdata("selected_products", []);
+		}
+		
 	}
 
 
 	public function index()
 	{
 		$this->session->set_userdata("page_at", "index");
+
 		
 		$sort_by = ($this->uri->segment(3)) ? $this->uri->segment(3) : "low_price";
 		$total_rows = $this->Search->record_count();
