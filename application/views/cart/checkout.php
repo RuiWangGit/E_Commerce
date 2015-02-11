@@ -159,7 +159,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										
 										<p id="update-qty" style="display:inline-block">
 											
-											<?php require_once('update.php'); ?>
+											<?php require('update.php'); ?>
 										</p>
 
 										<p style="display:inline-block" class="pull-right">
