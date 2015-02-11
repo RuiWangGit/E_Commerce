@@ -4,12 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 
 	private $view_data = [];
-	private $page_limit = 8;
+	private $page_limit = 12;
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->output->enable_profiler();
+		// $this->output->enable_profiler();
 		$this->load->model("Search");
 		$this->load->library("pagination");
 		$this->view_data["categories"] = $this->Search->fetch_categories();
@@ -25,7 +25,7 @@ class Home extends CI_Controller {
 		$this->session->set_userdata("page_at", "index");
 
 		
-		$sort_by = ($this->uri->segment(3)) ? $this->uri->segment(3) : "low_price";
+		$sort_by = ($this->uri->segment(3)) ? $this->uri->segment(3) : "popular";
 		$total_rows = $this->Search->record_count();
 
 		$this->products_list("/home/index/$sort_by", $total_rows, 4, $sort_by, 0);
@@ -39,7 +39,7 @@ class Home extends CI_Controller {
 		$this->session->set_userdata("category_id", $this->uri->segment(3));
 
 		$category_id = $this->uri->segment(3);
-		$sort_by = ($this->uri->segment(4)) ? $this->uri->segment(4) : "low_price";
+		$sort_by = ($this->uri->segment(4)) ? $this->uri->segment(4) : "popular";
 		
 		$total_rows = $this->Search->fetch_count_by_category($category_id)["count"];
 
@@ -61,7 +61,7 @@ class Home extends CI_Controller {
 			$keyword = $this->session->userdata("keyword");
 		}
 
-		$sort_by = ($this->uri->segment(4)) ? $this->uri->segment(4) : "low_price";
+		$sort_by = ($this->uri->segment(4)) ? $this->uri->segment(4) : "popular";
 
 		$total_rows = $this->Search->fetch_count_by_keyword($keyword)["count"];
 
