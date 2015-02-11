@@ -113,5 +113,4 @@ class Search extends CI_Model {
 		$this->db->query($query, $value);
 	}
 }
-
 ?>
