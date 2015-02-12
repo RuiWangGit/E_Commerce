@@ -60,5 +60,5 @@
 <?php
 	}
 ?>
-	<div id="pagination" class="text-center"><?= $links; ?></div>
 </div>
+<div id="pagination" class="text-center"><?= $links; ?></div>

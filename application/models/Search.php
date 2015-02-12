@@ -113,6 +113,14 @@ class Search extends CI_Model {
 		$this->db->query($query, $value);
 	}
 
+	public function fetch_featured_products()
+	{
+		$query = "SELECT * FROM products
+				  WHERE product_clicks > 500
+				  LIMIT 1, 30";
+		return $this->db->query($query)->result_array();
+	}
+
 
 	//Jeff's methods for admin queries
 	public function create_product(){

@@ -3,13 +3,13 @@
 		<img src="<?= $product[0]['main_image']?>" class="img-responsive main-image">
 		<div class="thumb-container clearfix">
 			<div class="thumb">
-				<img src="<?= $product[0]['image_path_1']; ?>">
+				<img src="<?= $product[0]['image_path_1']; ?>" class="img-responsive">
 			</div>
 			<div class="thumb">
-				<img src="<?= $product[0]['image_path_2']; ?>">
+				<img src="<?= $product[0]['image_path_2']; ?>" class="img-responsive">
 			</div>
 			<div class="thumb">
-				<img src="<?= $product[0]['image_path_3']; ?>">
+				<img src="<?= $product[0]['image_path_3']; ?>" class="img-responsive">
 			</div>
 		</div>
 	</div>
@@ -36,14 +36,25 @@
 		<p class="description"><?= $product[0]['description']?></p>		
 	</div>
 </div>
-<div id="suggest" class="row clearfix">
-	<ul class="text-center">
-		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
-		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
-		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
-		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
-		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
-		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
-		<li class="suggest-thumb"><img src="http://placehold.it/120x120"></li>
-	</ul>
+<h3>Featured Items</h3>
+<div id="slideshow-frame">
+	<div class="slideshow-box">
+		<ul>
+<?php
+		foreach($featured_products as $featured_product) {
+?>
+			<li>
+				<a href="/home/product/<?= $featured_product['id'] ?>" title="<?= $featured_product['name']?>">
+					<img src="<?= $featured_product['main_image'] ?>" class="img-responsive">
+					<p class="text-center"><?= $featured_product['name'] ?></p>
+				</a>
+
+			</li>
+<?php
+		}
+?>
+		</ul>
+	</div>
+	<div class="arrow-prev"></div>
+	<div class="arrow-next"></div>
 </div>
