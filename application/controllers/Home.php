@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->output->enable_profiler();
+		// $this->output->enable_profiler();
 		$this->load->model("Search");
 		$this->load->library("pagination");
 		$this->view_data["categories"] = $this->Search->fetch_categories();
@@ -106,6 +106,7 @@ class Home extends CI_Controller {
 		$this->Search->update_product_clicks($product_id);
 		$this->view_data["products"] = "";
 		$this->view_data["product"] = $this->Search->fetch_product_by_id($product_id);
+		$this->view_data["featured_products"] = $this->Search->fetch_featured_products();
 		$this->load->view("index", $this->view_data);
 	}
 

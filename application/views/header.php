@@ -13,18 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link href="/assets/css/style.css" rel="stylesheet" type="text/css">
 
 	<script src="/assets/js/jquery-2.1.3.min.js"></script>
-
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("form#filter select").change(function(){
-				$(this).parent().submit();
-			});
-
-			$(".thumb img").click(function(){
-				$(".main-image").attr("src", $(this).attr("src"));
-			})
-		})
-	</script>
+	<script src="/assets/js/custom.js"></script>
 </head>
 <body>
 	<header class="navbar navbar-inverse navbar-fixed-top">

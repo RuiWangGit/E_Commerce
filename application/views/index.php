@@ -29,7 +29,7 @@
 				</form>
 				<!-- search box end -->
 
-				<div class="item_result">
+				<div class="item-result">
 					<?php
 						if($products != "") {
 							include("product_list.php");
