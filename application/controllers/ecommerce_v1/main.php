@@ -8,14 +8,14 @@ class Main extends CI_Controller {
 		$this->output->enable_profiler(FALSE);
 		$this->load->library('session');
 
-		$this->load->model('/ecommerce_v1/ecommerce');
+		$this->load->model('ecommerce_v1/ecommerce');
 	}
 
 
 	public function login()
 	{
 
-		$this->load->view('/ecommerce_v1/login');
+		$this->load->view('ecommerce_v1/login');
 
 	}
 
@@ -23,7 +23,7 @@ class Main extends CI_Controller {
 	{
 
 //		$this->session->sess_destroy();
-		$this->load->view('/ecommerce_v1/login');
+		$this->load->view('ecommerce_v1/login');
 
 	}
 
@@ -114,7 +114,7 @@ class Main extends CI_Controller {
 		$orders['page_nos'] = $this->session->userdata('page_nos');
 		$orders['total_nos'] = $this->session->userdata('total_nos');
 
-		$this->load->view('/ecommerce_v1/admin_index', array('orders' => $orders) );
+		$this->load->view('ecommerce_v1/admin_index', array('orders' => $orders) );
 
 	}
 
@@ -129,7 +129,7 @@ class Main extends CI_Controller {
 		$order_det['order'] = $order_details;
 		$order_det['product'] = $product_details;
 
-		$this->load->view('/ecommerce_v1/order_details', array('order_det' => $order_det) );
+		$this->load->view('ecommerce_v1/order_details', array('order_det' => $order_det) );
 
 	}
 
@@ -155,7 +155,7 @@ class Main extends CI_Controller {
 
 		//var_dump($products);
 
-		$this->load->view('/ecommerce_v1/admin_products', array('products' => $products) );
+		$this->load->view('ecommerce_v1/admin_products', array('products' => $products) );
 	}
 
 	public function products_item_nos(){
@@ -168,7 +168,7 @@ class Main extends CI_Controller {
 
 		$products = $this->ecommerce->get_all_products($products);
 
-		$this->load->view('/ecommerce_v1/admin_products', array('products' => $products) );
+		$this->load->view('ecommerce_v1/admin_products', array('products' => $products) );
 
 	}
 
@@ -181,7 +181,7 @@ class Main extends CI_Controller {
 
 		$products = $this->ecommerce->get_all_products($products);
 
-		$this->load->view('/ecommerce_v1/admin_products', array('products' => $products) );
+		$this->load->view('ecommerce_v1/admin_products', array('products' => $products) );
 	}
 
 
@@ -196,7 +196,7 @@ class Main extends CI_Controller {
 	}
 
 	public function open_edit_product()	{
-		$this->load->view('/ecommerce_v1/edit_product');
+		$this->load->view('ecommerce_v1/edit_product');
 	}
 
 
