@@ -146,12 +146,12 @@
 		<!-- Collection of nav links, forms, and other content for toggling -->
 		<div id="navbarCollapse" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="ecommerce_v1/main" style="color:white; font-size: 18px; margin-right: 57px; ">Bootcamp</a></li>
-				<li class="active"><a href="ecommerce_v1/main">Orders</a></li>
-				<li><a href="ecommerce_v1/main/get_all_products">Products</a></li>
+				<li><a href="/ecommerce_v1/main" style="color:white; font-size: 18px; margin-right: 57px; ">Bootcamp</a></li>
+				<li class="active"><a href="/ecommerce_v1/main">Orders</a></li>
+				<li><a href="/ecommerce_v1/main/get_all_products">Products</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="ecommerce_v1/main/logout">Logout</a></li>
+				<li><a href="/ecommerce_v1/main/logout">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -166,7 +166,7 @@
 			</div>
 
 			<div class="div_item_nos">
-				<form action='ecommerce_v1/main/item_nos' name='item_nos' class="item_nos">
+				<form action='/ecommerce_v1/main/item_nos' name='item_nos' class="item_nos">
 					<label style="display: inline; vertical-align: center;"> Show :  </label>
 					<select style='max-width: 100px; height: 30px; margin-right: 20px;' name='select_item_nos'>
 						<option <?php if($orders['item_nos'] == '1'){ echo "selected";} ?> name="1">1</option>
@@ -178,7 +178,7 @@
 			</div>
 
 			<div class="div_select_orders">
-				<form action = 'ecommerce_v1/main/select_orders' class='status_select'>					
+				<form action = '/ecommerce_v1/main/select_orders' class='status_select'>					
 					<select name= 'order_status_select' style='max-width: 300px; height: 30px; margin-right: 5px;  float: right;'>
 						<option <?php if($orders['select_orders'] == 'All'){ echo "selected";} ?>  name='All'>All</option>;
 						<option <?php if($orders['select_orders'] == 'Order In'){ echo "selected";} ?> name='Order In'>Order In</option>; 
@@ -211,13 +211,13 @@
 					$name = $orders[$i]['first_name']." ".$orders[$i]['last_name'] ;
 
 					echo "<tr>";
-					echo "<td><a href = 'ecommerce_v1/main/order_details/{$orders[$i]['id']}'/>".$orders[$i]['id']."</td>";
+					echo "<td><a href = '/ecommerce_v1/main/order_details/{$orders[$i]['id']}'/>".$orders[$i]['id']."</td>";
 					echo "<td>".$name."</td>";
 					echo "<td>12-07-2014</td>" ;
 					echo "<td>".$orders[$i]['address1']."</td>";
 					echo "<td>360.0</td>";
 
-					echo "<td><form class='order_status' action='.ecommerce_v1/main/update_order/{$orders[$i]['id']}' method='post'><select name='option' style='max-width: 300px; height: 30px; margin-right: 17px; text-align: left;'>
+					echo "<td><form class='order_status' action='./ecommerce_v1/main/update_order/{$orders[$i]['id']}' method='post'><select name='option' style='max-width: 300px; height: 30px; margin-right: 17px; text-align: left;'>
 					<option" ?> <?php if($orders[$i]['order_status'] == 'Order In'){ echo "selected";} ?> <?php echo " name='Order In'>Order In</option>
 					<option" ?> <?php if($orders[$i]['order_status'] == 'Processed'){ echo "selected";} ?> <?php echo " name='Processed'>Processed</option>
 					<option" ?> <?php if($orders[$i]['order_status'] == 'Shipped'){ echo "selected";} ?> <?php echo " name='Shipped'>Shipped</option>
@@ -240,8 +240,8 @@
 			if($total_pages < 1){$total_pages = 1;}
 
 			for($j = 1; $j < ($total_pages+1); $j++){
-				// 	echo "<form class = 'page_nos' action = 'ecommerce_v1/main/page_nos/{$j}' method='post' style= 'display:inline-block; vertical-align: top;'><label style='padding: 0px 15px; font-size: 13px; border: 1px solid silver;'><a href='javascript:form_submit()'>".$j."</a></label></form>";
-				echo "<a class='page_nos' href='ecommerce_v1/main/page_nos/{$j}'>".$j."</a>";
+				// 	echo "<form class = 'page_nos' action = '/ecommerce_v1/main/page_nos/{$j}' method='post' style= 'display:inline-block; vertical-align: top;'><label style='padding: 0px 15px; font-size: 13px; border: 1px solid silver;'><a href='javascript:form_submit()'>".$j."</a></label></form>";
+				echo "<a class='page_nos' href='/ecommerce_v1/main/page_nos/{$j}'>".$j."</a>";
 
 			}
 

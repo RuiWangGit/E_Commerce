@@ -90,12 +90,12 @@
 		<!-- Collection of nav links, forms, and other content for toggling -->
 		<div id="navbarCollapse" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="ecommerce_v1/main" style="color:white; font-size: 18px; margin-right: 57px; ">Bootcamp</a></li>
-				<li class="active"><a href="ecommerce_v1/main">Orders</a></li>
-				<li><a href="ecommerce_v1/main/get_all_products">Products</a></li>
+				<li><a href="/ecommerce_v1/main" style="color:white; font-size: 18px; margin-right: 57px; ">Bootcamp</a></li>
+				<li class="active"><a href="/ecommerce_v1/main">Orders</a></li>
+				<li><a href="/ecommerce_v1/main/get_all_products">Products</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="ecommerce_v1/main/logout">Logout</a></li>
+				<li><a href="/ecommerce_v1/main/logout">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
