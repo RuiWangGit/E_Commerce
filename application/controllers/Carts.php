@@ -15,7 +15,7 @@ class  Carts extends CI_Controller {
         $selected_products  = $this->Product->get_all_selected_products($this->session->userdata('selected_products'));
         // var_dump($selected_products);
         // die;
-        $this->load->view("cart/checkout", array('selected_products'=>$selected_products, 'id'=>"" ) );
+        $this->load->view("cart/checkout", array('selected_products'=>$selected_products, 'id'=>" " ) );
                 
     }
 
@@ -140,7 +140,9 @@ class  Carts extends CI_Controller {
         // var_dump($product);
         // die;
         
-        $this->load->view('/cart/show', array('product'=>$product ) );        
+        $var_dump($product);
+        die();
+        $this->load->view('cart/show', array('product'=>$product ) );        
         // header("Location:/home/show/1");  
     }
 

@@ -1,12 +1,11 @@
 
-      <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">      
-
-          <table  class="table table-striped">
+           <table  class="table table-striped">
             <thead>
               <tr>
                 <th>Item</th>
+                <th>Name</th>
                 <th>Price</th>
-                <th style="width:150px">Quantity</th>
+                <th>Quantity</th>
                 <th>Total</th>
               </tr>
             </thead>
@@ -20,7 +19,8 @@
                 ?>
                 <tr id ="row_<?=$product_id?>">
                   
-                      <td><img style="width:50px; height:50px; "class='carts-img img-responsive' src='<?= $product["main_image"]?>' alt="no image"><?=$product['name']?></td>
+                      <td><img class='carts-img img-responsive' src='<?= $product["main_image"]?>' alt="no image"></td>
+                      <td><?=$product['name']?></td>
                       <td><?=$product['price']?></td>
                       <td>
                           
@@ -35,12 +35,13 @@
                                     </form>
                           <?php } else {?>
                                    
-                                      <p id="qty" style="display:inline-block;"><?= $product['quantity']?></p>
-                                   
-                                      <a id='qty_remove' data-toggle="modal" href="#delete-confirmation-<?=$product_id?>" class="pull-right"><i class="fa fa-trash-o"></i></a> 
-                                      <a id="update-link" type="button"  href="/carts/edit/<?=$product_id?>"  class="pull-right">update</a>
-                                    
-
+                                      <span id="qty"><?= $product['quantity']?></span>
+                                      <a id="update-link" type="button" href="/carts/edit/<?=$product_id?>">
+                                        <span>update</span>
+                                      </a>
+                                      <a id='qty_remove' data-toggle="modal" href="#delete-confirmation-<?=$product_id?>">
+                                        <span><i class="fa fa-trash-o"></i></span>
+                                      </a>
                            <?php } ?>
                           
                       </td>
@@ -83,11 +84,9 @@
           </table>
 
 
-          <p class="pull-right">
-            <label style="display:block;">Total:   $<?=$total?></label>
-            
-            
-          </p>
+          <p class="text-right">
+            <strong>Total: $<?=$total?></strong>
+          <p>
 
 
     

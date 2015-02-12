@@ -51,3 +51,93 @@ var setFramePosition = function(pos) {
 	// set ul left position
 	$('#slideshow-frame ul').animate({ left: px }, 500);
 };
+
+
+
+// cart page 
+$(document).ready(function(){
+	var tmp;
+	var save; 
+	var id;
+
+	// console.log("tttt");
+	$(document).on("click", "a#update-link", function(){
+		// console.log("tttt2222");
+		 // tmp = $(this).parent().children('p');
+		 tmp = $(this).parent();
+		
+		// save = $('#qty-remove');
+		// console.log($(this));
+
+		id =$(this).attr('href');
+		console.log('post url:',id);
+		console.log('tag:', tmp);
+		
+		
+		tmp.html("<form id='saveForm' action='"+id+"' method='post'><input type='text' style='width:45px; height:26px;' name='quantity' value=''><input type='hidden' name='submit' value='save'><input style=' vertical-align:top; margin-left: 20px; ' type='submit' value='save'></form>" );
+		// save.html("");// remove update keyword
+		
+		return false;	
+	});
+
+
+	$(document).on('submit', 'form#saveForm', function() {
+		console.log("++++++++++");
+		// var tmp1 = $(this).parent().parent().parent().parent();
+		// console.log(tmp1);
+		// console.log($(this));
+		$.ajax({
+			url: $(this).attr("action"),
+			type: "post",
+			data: $(this).serialize()
+		}).done(function(data){
+
+			console.log(data);
+			$('#table-input').html(data);
+			// tmp1.html(data);
+		})
+		return false;
+	});
+});
+
+
+// payment process
+function disable_enable(f)
+    {
+
+        //console.log(f);
+        if(document.getElementById("checkbox").checked != 1)
+        {
+           document.getElementById("checkbox-hidden").setAttribute('value', 0);  
+           f.billing_address.value = "";
+            f.billing_address2.value = "";
+            f.billing_state.value = "";
+            f.billing_city.value = "";
+            f.billing_zipcode.value = "";
+            document.getElementsByName("billing_address")[0].removeAttribute("disabled");
+            document.getElementsByName("billing_address2")[0].removeAttribute("disabled");
+            document.getElementsByName("billing_state")[0].removeAttribute("disabled");
+            document.getElementsByName("billing_city")[0].removeAttribute("disabled");
+            document.getElementsByName("billing_zipcode")[0].removeAttribute("disabled");
+            
+        }
+        else
+        {
+        
+            document.getElementById("checkbox-hidden").setAttribute('value', 1); 
+            
+            f.billing_address.value = f.shipping_address.value;
+             f.billing_address2.value = f.shipping_address2.value;
+             f.billing_state.value = f.shipping_state.value;
+             f.billing_city.value = f.shipping_city.value;
+             f.billing_zipcode.value = f.shipping_zipcode.value;
+            document.getElementsByName("billing_address")[0].setAttribute("disabled","disabled");
+            document.getElementsByName("billing_address2")[0].setAttribute("disabled","disabled");
+            document.getElementsByName("billing_state")[0].setAttribute("disabled","disabled");
+            document.getElementsByName("billing_city")[0].setAttribute("disabled","disabled");
+            document.getElementsByName("billing_zipcode")[0].setAttribute("disabled","disabled");
+
+            
+         
+        }
+    }
