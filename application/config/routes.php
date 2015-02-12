@@ -9,6 +9,7 @@ $route['carts/remove'] = 'carts/remove';
 $routes['payments/charge'] = 'payments/charge';
 $route['carts'] = 'carts';
 $route['carts/update/:any'] = 'carts/retrieve_update';
+$route['paymenys/pay'] = 'payments/pay'; 
 
 $route['CreateProducts'] = 'CreateProducts';
 $route['EditProducts'] = 'EditProducts';

@@ -6,11 +6,11 @@
               <tr>
                 <th>Item</th>
                 <th>Price</th>
-                <th>Quantity</th>
+                <th style="width:150px">Quantity</th>
                 <th>Total</th>
               </tr>
             </thead>
-            <tbody >
+            <tbody>
               
               <?php
               $product_id =null;
@@ -33,10 +33,12 @@
                                       <input style=' vertical-align:top; margin-left: 20px; ' type='submit' value='save'>
                                     </form>
                           <?php } else {?>
-                                    <p style="display:inline-block;"><?= $product['quantity']?></p>
-                                    <a data-toggle="modal" href="#delete-confirmation" class="pull-right">remove</a> 
-                                    <a id="update-link" type="button"  href="/carts/edit/<?=$product_id?>" class="pull-right">update</a>
-                                  
+                                   
+                                    <p id="qty" style="display:inline-block;"><?= $product['quantity']?></p>
+                                   
+                                      <a id='qty_remove' data-toggle="modal" href="#delete-confirmation-<?=$product_id?>" class="pull-right">remove</a> 
+                                      <a id="update-link" type="button"  href="/carts/edit/<?=$product_id?>"  class="pull-right">update</a>
+                                    
 
                            <?php } ?>
                         
@@ -46,6 +48,29 @@
                     <?php
                     $total += $product['price']*$product['quantity'];
                     ?>
+
+
+                           <div class="modal fade" id="delete-confirmation-<?=$product_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+                                    <h4 class="modal-title">Do you really want to remove the product?</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form action="/carts/remove" method="post">
+                                      <input type="hidden" name="id" value='<?=$product_id?>'>
+                                        <button type="submit" class="btn btn-default" >Yes</button>
+                                        <button type="submit" class="btn btn-primary" data-dismiss="modal">No</button>
+                                      </form>
+                                   
+                                  </div>
+                                </div><!-- /.modal-content -->
+                              </div><!-- /.modal-dialog -->
+                            </div>
+
+
+
                     </tr>
                <?php
                } ?>
@@ -59,11 +84,12 @@
 
           <p class="pull-right">
             <label style="display:block;">Total:   $<?=$total?></label>
-            <a class="btn btn-large btn-info" href="/home" >Continue shopping</a>
+            
+            
           </p>
 
 
-
+    
 
 
 
