@@ -40,17 +40,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		// console.log("tttt");
 		$(document).on("click", "a#update-link", function(){
 			// console.log("tttt2222");
-			// tmp = $(this).parent().children('p');
-			tmp = $('#qty').parent();
+			 // tmp = $(this).parent().children('p');
+			 tmp = $(this).parent();
 			
 			// save = $('#qty-remove');
 			// console.log($(this));
 
 			id =$(this).attr('href');
 			console.log('post url:',id);
+			console.log('tag:', tmp);
 			
 			
-			tmp.html("<form id='saveForm' action='"+id+"' method='post'><textarea style='width:45px; height:26px;' name='quantity' value=''></textarea><input type='hidden' name='submit' value='save'><input style=' vertical-align:top; margin-left: 20px; ' type='submit' value='save'></form>" );
+			tmp.html("<form id='saveForm' action='"+id+"' method='post'><input type='text' style='width:45px; height:26px;' name='quantity' value=''><input type='hidden' name='submit' value='save'><input style=' vertical-align:top; margin-left: 20px; ' type='submit' value='save'></form>" );
 			// save.html("");// remove update keyword
 			
 			return false;	

@@ -91,7 +91,8 @@ class  Carts extends CI_Controller {
     }
 
     public function remove(){
-        
+            // var_dump($this->input->post());
+            // die;
         $carts_arr = $this->session->userdata('selected_products');
         unset($carts_arr[$this->input->post('id')]);
         $this->session->set_userdata('selected_products', $carts_arr);
