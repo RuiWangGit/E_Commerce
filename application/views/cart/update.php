@@ -1,5 +1,5 @@
 
-            
+      <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">      
 
           <table  class="table table-striped">
             <thead>
@@ -23,6 +23,7 @@
                       <td><img style="width:50px; height:50px; "class='carts-img img-responsive' src='<?= $product["main_image"]?>' alt="no image"><?=$product['name']?></td>
                       <td><?=$product['price']?></td>
                       <td>
+                          
                           <?php if ( ( $id == $product_id )&& ($this->session->flashdata('error')!=null ) )  {   ?>
                                   <p style="display:block; color:red; font-size: 12px">
                                   <?php echo $this->session->flashdata('error'); ?>
@@ -34,14 +35,14 @@
                                     </form>
                           <?php } else {?>
                                    
-                                    <p id="qty" style="display:inline-block;"><?= $product['quantity']?></p>
+                                      <p id="qty" style="display:inline-block;"><?= $product['quantity']?></p>
                                    
-                                      <a id='qty_remove' data-toggle="modal" href="#delete-confirmation-<?=$product_id?>" class="pull-right">remove</a> 
+                                      <a id='qty_remove' data-toggle="modal" href="#delete-confirmation-<?=$product_id?>" class="pull-right"><i class="fa fa-trash-o"></i></a> 
                                       <a id="update-link" type="button"  href="/carts/edit/<?=$product_id?>"  class="pull-right">update</a>
                                     
 
                            <?php } ?>
-                        
+                          
                       </td>
                       <td>$<?= $product['price']*$product['quantity'] ?></td> 
                 

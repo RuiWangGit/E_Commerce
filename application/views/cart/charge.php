@@ -29,11 +29,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-  function disable_enable()
+  function disable_enable(f)
     {
+
+        //console.log(f);
         if(document.getElementById("checkbox").checked != 1)
         {
            document.getElementById("checkbox-hidden").setAttribute('value', 0);  
+           f.billing_address.value = "";
+            f.billing_address2.value = "";
+            f.billing_state.value = "";
+            f.billing_city.value = "";
+            f.billing_zipcode.value = "";
             document.getElementsByName("billing_address")[0].removeAttribute("disabled");
             document.getElementsByName("billing_address2")[0].removeAttribute("disabled");
             document.getElementsByName("billing_state")[0].removeAttribute("disabled");
@@ -43,12 +50,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
         else
         {
+        
             document.getElementById("checkbox-hidden").setAttribute('value', 1); 
+            
+            f.billing_address.value = f.shipping_address.value;
+             f.billing_address2.value = f.shipping_address2.value;
+             f.billing_state.value = f.shipping_state.value;
+             f.billing_city.value = f.shipping_city.value;
+             f.billing_zipcode.value = f.shipping_zipcode.value;
             document.getElementsByName("billing_address")[0].setAttribute("disabled","disabled");
             document.getElementsByName("billing_address2")[0].setAttribute("disabled","disabled");
             document.getElementsByName("billing_state")[0].setAttribute("disabled","disabled");
             document.getElementsByName("billing_city")[0].setAttribute("disabled","disabled");
             document.getElementsByName("billing_zipcode")[0].setAttribute("disabled","disabled");
+
             
          
         }
@@ -69,7 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <nav>
           <ul class="nav navbar-nav">
             <li><a href='/'>Home</a></li>
-            <li><a href='/'>Shopping cart ( <?= count($this->session->userdata('selected_products')) ?> )</a></li>
+            <li><a href='/carts'>Shopping cart ( <?= count($this->session->userdata('selected_products')) ?> )</a></li>
           </ul>
         </nav>
       </div>
@@ -80,8 +95,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="container">
 
 
-      <div class="col-lg-2">
-        
+      <div class="col-lg-2" style="margin-top:150px; color:red;">
+        <?php 
+      $this->load->library("form_validation");
+      echo validation_errors(); ?>
       </div>
     
       <div class="col-lg-10"> 
@@ -110,8 +127,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <input type="email" class="form-control" name="shipping_email" value="micheal@gmail.com" placeholder="Enter email">
               </div>
               <div class="form-group">
+                <label for="email">Phone:</label>
+                <input type="phone" class="form-control" name="shipping_phone" value="111112222" placeholder="">
+              </div>
+              <div class="form-group">
                 <label for="address">Address:</label>
-                <input type="address" class="form-control" name="shipping_address" value="choi" placeholder="Enter address">
+                <input type="address" class="form-control" name="shipping_address" value="choi111" placeholder="Enter address">
               </div>
               <div class="form-group">
                 <label for="address2">Address 2:</label>
@@ -137,7 +158,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               
               <h4 style="margin-top: 20px; display:inline-block;">Billing Information </h4>
               <div class="checkbox " >
-                <label><input onClick="disable_enable()" type="checkbox" id="checkbox" name="checkbox" value="">Same as shipping address
+                <label><input onClick="disable_enable(this.form)" type="checkbox" id="checkbox" name="checkbox" value="">Same as shipping address
                         <input  type="hidden" id="checkbox-hidden" name="checkbox" value="0"></label>
               </div>
               
@@ -163,22 +184,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <input type="zipcode" class="form-control" name="billing_zipcode" value="choi" placeholder="Enter zipcode">
                   </div>
                   <div class="form-group">
-                    <label for="first_name">First Name:</label>
-                    <input type="first_name" class="form-control" name="billing_first_name" value="michael" placeholder="Enter first name">
+                    <label for="first_name">Name on the card:</label>
+                    <input type="full_name" class="form-control" name="billing_full_name" value="michael" placeholder="">
                   </div>
                   <div class="form-group">
-                    <label for="last_name">Last Name:</label>
-                    <input type="last_name" class="form-control" name="billing_last_name" value="choi" placeholder="Enter last name">
+                    <label for="last_name">Phone number:</label>
+                    <input type="billing_phone" class="form-control" name="billing_phone" value="" placeholder="">
                   </div>
                   <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" name="billing_email" value="micheal@gmail.com" placeholder="Enter email">
+                    <input type="email" class="form-control" name="billing_email" value="micheal@gmail.com" placeholder="">
                   </div>
 
                   <p style="color:red"><?php echo $this->session->flashdata('error'); ?></p>
                   <div class="form-group">
-                    <label for="card_number">Card Number:</label>
-                    <input type="card_number" class="form-control" name="card_number" value="" placeholder="Enter card number">
+                    <label for="card_number"><i class="fa fa-credit-card"></i>  Card Number:</label>
+                    <input type="credit_card" class="form-control" name="credit_card" value="" placeholder="Enter card number">
                   </div>
                   <div class="form-group">
                     <label for="security_code">Security Code:</label>

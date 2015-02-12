@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <nav>
           <ul class="nav navbar-nav">
             <li><a href='/'>Home</a></li>
-            <li><a href='/'>Shopping cart ( <?= count($this->session->userdata('selected_products')) ?> )</a></li>
+            <li><a href='/carts'>Shopping cart ( <?= count($this->session->userdata('selected_products')) ?> )</a></li>
           </ul>
         </nav>
       </div>
