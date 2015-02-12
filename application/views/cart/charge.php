@@ -1,6 +1,6 @@
-<?php include("header.php"); ?>
+<?php $this->load->view("header") ?>
 
-<div class="container">
+<div id="main-section" class="container">
 
       <div class="col-md-2" style="margin-top:150px; color:red;">
         <?php 
@@ -152,8 +152,4 @@
 
 
   
-
-<?php include("footer.php"); ?>
-
-
-
+<?php $this->load->view("footer") ?>

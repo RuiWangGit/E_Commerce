@@ -140,8 +140,7 @@ class  Carts extends CI_Controller {
         // var_dump($product);
         // die;
         
-        $var_dump($product);
-        die();
+
         $this->load->view('cart/show', array('product'=>$product ) );        
         // header("Location:/home/show/1");  
     }

@@ -1,4 +1,9 @@
 
+
+
+  <!-- To use bootstrap -->
+  
+
            <table  class="table table-striped">
             <thead>
               <tr>
@@ -21,7 +26,7 @@
                   
                       <td><img class='carts-img img-responsive' src='<?= $product["main_image"]?>' alt="no image"></td>
                       <td><?=$product['name']?></td>
-                      <td><?=$product['price']?></td>
+                      <td><i class="fa fa-usd"></i><?=$product['price']?></td>
                       <td>
                           
                           <?php if ( ( $id == $product_id )&& ($this->session->flashdata('error')!=null ) )  {   ?>
@@ -43,15 +48,6 @@
                                         <span><i class="fa fa-trash-o"></i></span>
                                       </a>
                            <?php } ?>
-                          
-                      </td>
-                      <td>$<?= $product['price']*$product['quantity'] ?></td> 
-                
-                    <?php
-                    $total += $product['price']*$product['quantity'];
-                    ?>
-
-
                            <div class="modal fade" id="delete-confirmation-<?=$product_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
@@ -69,11 +65,15 @@
                                   </div>
                                 </div><!-- /.modal-content -->
                               </div><!-- /.modal-dialog -->
-                            </div>
-
-
-
+                            </div>  
+                      </td>
+                      <td><i class="fa fa-usd"></i><?= $product['price']*$product['quantity'] ?></td> 
+                
+                    <?php
+                    $total += $product['price']*$product['quantity'];
+                    ?>
                     </tr>
+                    
                <?php
                } ?>
 
@@ -85,7 +85,7 @@
 
 
           <p class="text-right">
-            <strong>Total: $<?=$total?></strong>
+            <strong>Total: <i class="fa fa-usd"></i><?=$total?></strong>
           <p>
 
 
