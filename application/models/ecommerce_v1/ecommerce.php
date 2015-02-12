@@ -52,13 +52,13 @@ class ecommerce extends CI_Model{
 
 		if($values[0] == 'All'){
 
-			$query = "SELECT orders.id, orders.created_at, orders.order_status, customers.first_name,customers.last_name, ship_address.address1, ship_address.address2, locations.city_name,locations.state_name  FROM orders JOIN customers ON customers.id = orders.customers_id JOIN ship_address ON ship_address.id = customers.ship_address_id JOIN locations ON locations.id = ship_address.locations_id ORDER BY orders.id" ;
+			$query = "SELECT orders.id, orders.created_at, orders.order_status, customers.first_name,customers.last_name, ship_address.address1, ship_address.address2, locations.city_name,locations.state_name  FROM orders JOIN customers ON customers.id = orders.customer_id JOIN ship_address ON ship_address.id = customers.ship_address_id JOIN locations ON locations.id = ship_address.locations_id ORDER BY orders.id" ;
 
 			return array_slice($this->db->query($query)->result_array(),($min_id_range),$max_id_range);
 
 		} else {
 
-			$query = "SELECT orders.id, orders.created_at, orders.order_status, customers.first_name,customers.last_name, ship_address.address1, ship_address.address2, locations.city_name,locations.state_name  FROM orders JOIN customers ON customers.id = orders.customers_id JOIN ship_address ON ship_address.id = customers.ship_address_id JOIN locations ON locations.id = ship_address.locations_id  WHERE orders.order_status = ? ORDER BY orders.id" ;
+			$query = "SELECT orders.id, orders.created_at, orders.order_status, customers.first_name,customers.last_name, ship_address.address1, ship_address.address2, locations.city_name,locations.state_name  FROM orders JOIN customers ON customers.id = orders.customer_id JOIN ship_address ON ship_address.id = customers.ship_address_id JOIN locations ON locations.id = ship_address.locations_id  WHERE orders.order_status = ? ORDER BY orders.id" ;
 
 			return array_slice($this->db->query($query,$values)->result_array(),($min_id_range),$max_id_range);
 
@@ -69,7 +69,7 @@ class ecommerce extends CI_Model{
 
 	public function order_details($order){
 
-		$query = "SELECT orders.id, orders.created_at, orders.order_status, customers.first_name,customers.last_name, ship_address.address1, ship_address.address2, locations.city_name,locations.state_name FROM orders JOIN customers ON customers.id = orders.customers_id JOIN ship_address ON ship_address.id = customers.ship_address_id JOIN locations ON locations.id = ship_address.locations_id  WHERE orders.id = ? ORDER BY orders.id" ;
+		$query = "SELECT orders.id, orders.created_at, orders.order_status, customers.first_name,customers.last_name, ship_address.address1, ship_address.address2, locations.city_name,locations.state_name FROM orders JOIN customers ON customers.id = orders.customer_id JOIN ship_address ON ship_address.id = customers.ship_address_id JOIN locations ON locations.id = ship_address.locations_id  WHERE orders.id = ? ORDER BY orders.id" ;
 
 		$values = array($order['id']);
 
@@ -148,7 +148,7 @@ class ecommerce extends CI_Model{
 	// public function show_orders() {
 
 
-	// 	$query = "SELECT orders.id, orders.created_at, orders.order_status, customers.first_name,customers.last_name, ship_address.address1, ship_address.address2, locations.city_name,locations.state_name  FROM orders JOIN customers ON customers.id = orders.customers_id JOIN ship_address ON ship_address.id = customers.ship_address_id JOIN locations ON locations.id = ship_address.locations_id ORDER BY orders.id";
+	// 	$query = "SELECT orders.id, orders.created_at, orders.order_status, customers.first_name,customers.last_name, ship_address.address1, ship_address.address2, locations.city_name,locations.state_name  FROM orders JOIN customers ON customers.id = orders.customer_id JOIN ship_address ON ship_address.id = customers.ship_address_id JOIN locations ON locations.id = ship_address.locations_id ORDER BY orders.id";
 
 	// 	return $this->db->query($query)->result_array();
 
