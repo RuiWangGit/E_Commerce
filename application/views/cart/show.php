@@ -68,9 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div class="container">
 		<div class="col-lg-2">
-			<input type="text" name="search">
-			<input type="submit" value="submit">
-
+			
 			
 		</div>
 

@@ -40,17 +40,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		// console.log("tttt");
 		$(document).on("click", "a#update-link", function(){
 			// console.log("tttt2222");
-			tmp = $(this).parent().children('p');
-			console.log(tmp);
-			save = $(this);
-			console.log($(this));
+			// tmp = $(this).parent().children('p');
+			tmp = $('#qty').parent();
+			
+			// save = $('#qty-remove');
+			// console.log($(this));
 
 			id =$(this).attr('href');
 			console.log('post url:',id);
 			
 			
 			tmp.html("<form id='saveForm' action='"+id+"' method='post'><textarea style='width:45px; height:26px;' name='quantity' value=''></textarea><input type='hidden' name='submit' value='save'><input style=' vertical-align:top; margin-left: 20px; ' type='submit' value='save'></form>" );
-			save.html("");// remove update keyword
+			// save.html("");// remove update keyword
 			
 			return false;	
 		});
@@ -112,140 +113,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 
 			<div class="col-lg-2">
-				<input type="text" name="search">
-				<input type="submit" value="submit">	
+					
 			</div>
 			
 			<div class="col-lg-10" style="margin-bottom:50px"> 
 				<h3>Items in cart </h3>
 				<div id="table-input">			
 							<?php require('update.php'); ?>
+
 				</div>
+			
+				<p style='margin-top:60px; margin-right:0' >
+					<a class="btn btn-large btn-info pull-right" href="/payments" >Proceed to Pay</a>
+					<a class="btn btn-large btn-info pull-right" href="/home"  >Continue shopping</a>
+				</p>
+
+
 			</div>
+
+
+
 		</div>	
 
-				<form id="mainForm" action="/payments" method="post">
-					<div class="row" style="margin:40px 0">
-
-						<div class="col-sm-4 col-sm-offset-2" style="padding-left:30px; " > 
-							
-							<h4 style="margin: 20px 0">Shipping Information</h4>
-							<div class="checkbox " >
-							  <label></label>
-							</div>
-							<div class="form-group">
-								<label for="first_name">First Name:</label>
-								<input type="first_name" class="form-control" name="first_name" value="michael" placeholder="Enter first name">
-							</div>
-							<div class="form-group">
-								<label for="last_name">Last Name:</label>
-								<input type="last_name" class="form-control" name="last_name" value="choi" placeholder="Enter last name">
-							</div>
-							<div class="form-group">
-								<label for="email">Email:</label>
-								<input type="email" class="form-control" name="email" value="micheal@gmail.com" placeholder="Enter email">
-							</div>
-							<div class="form-group">
-								<label for="address">Address:</label>
-								<input type="address" class="form-control" name="shipping_address" value="choi" placeholder="Enter address">
-							</div>
-							<div class="form-group">
-								<label for="address2">Address 2:</label>
-								<input type="address" class="form-control" name="shipping_address2" value="choi" placeholder="Enter address2">
-							</div>
-							<div class="form-group">
-								<label for="city">City:</label>
-								<input type="city" class="form-control" name="shipping_city" value="choi" placeholder="Enter city">
-							</div>
-							<div class="form-group">
-								<label for="state">State:</label>
-								<input type="state" class="form-control" name="shipping_state" value="choi" placeholder="Enter state">
-							</div>
-							<div class="form-group">
-								<label for="zipcode">Zipcode:</label>
-								<input type="zipcode" class="form-control" name="shipping_zipcode" value="choi" placeholder="Enter zipcode">
-							</div>
-						</div>
-						
-					
-					
-						<div class="col-sm-4 col-sm-offset-2 " style="padding-right:30px"> 
-							
-							<h4 style="margin-top: 20px; display:inline-block;">Billing Information </h4>
-							<div class="checkbox " >
-							  <label><input type="checkbox" value="">Same as shipping information</label>
-							</div>
-							<div class="form-group">
-								<label for="first_name">First Name:</label>
-								<input type="first_name" class="form-control" name="first_name" value="michael" placeholder="Enter first name">
-							</div>
-							<div class="form-group">
-								<label for="last_name">Last Name:</label>
-								<input type="last_name" class="form-control" name="last_name" value="choi" placeholder="Enter last name">
-							</div>
-							<div class="form-group">
-								<label for="email">Email:</label>
-								<input type="email" class="form-control" name="email" value="micheal@gmail.com" placeholder="Enter email">
-							</div>
-								<div>
-								<div class="form-group">
-									<label for="address">Address:</label>
-									<input type="address" class="form-control" name="billing_address" value="choi" placeholder="Enter address">
-								</div>
-								<div class="form-group">
-									<label for="address2">Address 2:</label>
-									<input type="address" class="form-control" name="billing_address2" value="choi" placeholder="Enter address2">
-								</div>
-								<div class="form-group">
-									<label for="city">City:</label>
-									<input type="city" class="form-control" name="billing_city" value="choi" placeholder="Enter city">
-								</div>
-								<div class="form-group">
-									<label for="state">State:</label>
-									<input type="state" class="form-control" name="billing_state" value="choi" placeholder="Enter state">
-								</div>
-								<div class="form-group">
-									<label for="zipcode">Zipcode:</label>
-									<input type="zipcode" class="form-control" name="billing_zipcode" value="choi" placeholder="Enter zipcode">
-								</div>
-							</div>
-
-							<input type="hidden" name="submit" value="">
-							<button  type = "submit" class="btn">Pay</button>
-													
-						</div>
-					</div>
-			
-				</form>	
 		
+				
 	</div>
 
 
 
 
-  <div class="modal fade" id="delete-confirmation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-          <h4 class="modal-title">Do you really want to remove the product?</h4>
-        </div>
-        <div class="modal-body">
-        	<form action="/carts/remove" method="post">
-        		<input type="hidden" name="id" value='<?=$product_id?>'>
-          		<button type="submit" class="btn btn-default" >Yes</button>
-          		<button type="submit" class="btn btn-primary" data-dismiss="modal">No</button>
-          	</form>
-          
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div>
-
  
 
-
-	
 
 
 </body>
