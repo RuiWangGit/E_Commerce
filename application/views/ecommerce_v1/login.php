@@ -115,7 +115,7 @@
 				<li><a href="/" style="color:white; font-size: 18px; margin-right: 57px; ">Bootcamp</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href='/ecommerce_v1/main/login'>Login</a></li>
+				<li class="active"><a href='ecommerce_v1/main/login'>Login</a></li>
 			</ul>
 		</div>
 	</nav>

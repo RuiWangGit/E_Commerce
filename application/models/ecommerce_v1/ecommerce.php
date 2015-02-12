@@ -78,7 +78,7 @@ class ecommerce extends CI_Model{
 
 	public function products_in_order($order){
 
-		$query = "SELECT products.id,products.name,products.price, orders_has_products.number_products FROM orders_has_products JOIN orders ON orders_has_products.orders_id = orders.id JOIN products ON orders_has_products.products_id = products.id WHERE orders_has_products.orders_id = ?" ;
+		$query = "SELECT products.id,products.name,products.price, orders_has_products.number_products FROM orders_has_products JOIN orders ON orders_has_products.orders_id = orders.id JOIN products ON orders_has_products.product_id = products.id WHERE orders_has_products.orders_id = ?" ;
 
 		$values = array($order['id']);
 
@@ -89,7 +89,7 @@ class ecommerce extends CI_Model{
 
 	public function get_all_products($products){
 
-		$query = "SELECT SUM(orders_has_products.number_products), products.inventory, products.main_image, products.id, orders_has_products.products_id, products.name,products.price FROM products LEFT JOIN orders_has_products ON orders_has_products.products_id = products.id GROUP BY products.id" ;
+		$query = "SELECT SUM(orders_has_products.number_products), products.inventory, products.main_image, products.id, orders_has_products.product_id, products.name,products.price FROM products LEFT JOIN orders_has_products ON orders_has_products.product_id = products.id GROUP BY products.id" ;
 
 		
 		$item_nos = $products['product_item_nos'];

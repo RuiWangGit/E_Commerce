@@ -24,13 +24,13 @@ function table_sort(){
 	}); 
 }
 
-function pop_up_product(){
+// function pop_up_product(){
 
-	console.log('Hello');
-	window.open("../../views/ecommerce_v1/edit_product.php", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=0, left=100, width=400, height=800");
-//	window.open‘edit_product.html’,‘EditProduct’,‘menubar=no,width=430,height=360,toolbar=no’);
+// 	console.log('Hello');
+// 	window.open("../../views/ecommerce_v1/edit_product.php", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=0, left=100, width=400, height=800");
+// //	window.open‘edit_product.html’,‘EditProduct’,‘menubar=no,width=430,height=360,toolbar=no’);
 
-}
+// }
 
 
 $(document).ready(function(){
@@ -128,12 +128,12 @@ $(document).ready(function(){
 		<!-- Collection of nav links, forms, and other content for toggling -->
 		<div id="navbarCollapse" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="/ecommerce_v1/main" style="color:white; font-size: 18px; margin-right: 57px; ">Bootcamp</a></li>
-				<li ><a href="/ecommerce_v1/main">Orders</a></li>
-				<li class="active"><a href="/ecommerce_v1/main/get_all_products">Products</a></li>
+				<li><a href="ecommerce_v1/main" style="color:white; font-size: 18px; margin-right: 57px; ">Bootcamp</a></li>
+				<li ><a href="ecommerce_v1/main">Orders</a></li>
+				<li class="active"><a href="ecommerce_v1/main/get_all_products">Products</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/ecommerce_v1/main/logout">Logout</a></li>
+				<li><a href="ecommerce_v1/main/logout">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -149,7 +149,7 @@ $(document).ready(function(){
 			</div>
 
 			<div class="div_item_nos" style = "float: right;">
-				<form action='/ecommerce_v1/main/products_item_nos' name='product_item_nos' class="product_item_nos">
+				<form action='ecommerce_v1/main/products_item_nos' name='product_item_nos' class="product_item_nos">
 					<label style="display: inline; vertical-align: center;"> Show :  </label>
 					<select style='width: 50px; height: 30px; margin-right: 40px;' name='product_select_item_nos'>
 						<option <?php if($products['product_item_nos'] == '1'){ echo "selected";} ?> name="1">1</option>
@@ -194,7 +194,7 @@ $(document).ready(function(){
 					echo "<td>".$products[$i]['price']."</td>" ;
 					echo "<td>".$products[$i]['inventory']."</td>";
 					echo "<td>".$products[$i]['SUM(orders_has_products.number_products)']."</td>";
-					echo "<td><a href = 'javascript:pop_up_product()' style='padding: 0px 10px'> edit</a><a href = '/ecommerce_v1/main/product_delete/{$products[$i]['id']}'>  delete</a></td>";
+					echo "<td><a href = 'javascript:pop_up_product()' style='padding: 0px 10px'> edit</a><a href = 'ecommerce_v1/main/product_delete/{$products[$i]['id']}'>  delete</a></td>";
 
 				}
 
@@ -211,7 +211,7 @@ $(document).ready(function(){
 			if($total_pages < 1){$total_pages = 1;}
 
 			for($j = 1; $j < ($total_pages+1); $j++){
-				echo "<a class='product_page_nos' href='/ecommerce_v1/main/products_page_nos/{$j}'>".$j."</a>";
+				echo "<a class='product_page_nos' href='ecommerce_v1/main/products_page_nos/{$j}'>".$j."</a>";
 
 			}
 
